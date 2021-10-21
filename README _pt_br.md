@@ -8,8 +8,11 @@
 [![Última Versão](https://img.shields.io/github/release/jplag/jplag.svg)](https://github.com/jplag/jplag/releases/latest)
 [![Licença](https://img.shields.io/github/license/jplag/jplag.svg)](https://github.com/jplag/jplag/blob/master/LICENSE)
 
+## Descrição
+O JPlag é um software que compara códigos (formatos aceitos atualmente: java1, java2, java5, java5dm, java7, java9, python3, cpp, csharp, char, text, scheme) e textos com a finalidade de detectar plagio.
+
 ## Objetivo do repositório
-O atual repositório tem o objetivo de criar uma ferramenta que seja capaz de identificar possíveis plágios e semelhanças em códigos Java. 
+O atual repositório tem o objetivo de criar uma ferramenta que seja capaz de identificar possíveis plágios e semelhanças em códigos ou textos. 
 
 ## Baixando e Instalando
 
