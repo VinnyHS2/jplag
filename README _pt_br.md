@@ -43,3 +43,99 @@ The following features are currently only supported in the legacy version:
 
 ## Uso
 O JPlag pode ser tanto usado por linhas de comando quanto diretamente por sua API Java.
+
+## Conceitos
+
+Está seção explicará alguns dos conceitos fundamentais sobre o JPlag para facilicar seu entendimento e uso.
+
+### Diretório Raiz 
+
+O diretório raiz é utilizado pelo JPlag para procurar por submissões.
+
+### Submissões
+
+Submissões possuem o codigo fonte que o JPlag irá analisar e comparar. Eles devem ser filhos direto do diretorio raiz e podem ser tanto arquivos únicos quanto diretórios.
+
+#### Exemplo: Submissão de arquivo único
+
+```
+/path/to/root-directory
+├── Submission-1.java
+├── ...
+└── Submission-n.java
+```
+
+#### Exemplo: Submissão de diretórios
+
+O JPlag irá ler as submissões dos diretórios recursivamente, então eles podem conter diversos (aninhado) código fonte.
+
+```
+/path/to/root-directory
+├── Submission-1
+│   ├── Main.java
+│   └── util
+│       └── Utils.java
+├── ...
+└── Submission-n
+    ├── Main.java
+    └── util
+        └── Utils.java
+```
+
+Se você quer que o JPlag busque por um subdiretório especifico de uma submissão nos arquivos do código fonte (ex. `src`), você pode passar a opção `-S`:
+
+```
+Com a opção --subDir=src
+
+/path/to/root-directory
+├── Submission-1
+│   ├── src                 
+│   │   ├── Main.java       # Included
+│   │   └── util            
+│   │       └── Utils.java  # Included
+│   ├── lib                 
+│   │   └── Library.java    # Ignored
+│   └── Other.java          # Ignored
+└── ...
+```
+
+### Código base
+
+O código base é uma forma especial de submissão. É o padrão no qual todas as outras serão baseadas. Jplag irá ignorar qualquer semelhança em duas submissões que sejam parte do código base.
+
+Como qualquer outra submissão, o código base deve estar em um único arquivo ou diretório no diretório raiz.
+
+```
+/path/to/root-directory
+├── BaseCode
+│   └── Solution.java
+├── Submission-1
+│   └── Solution.java
+├── ...
+└── Submission-n
+    └── Solution.java
+```
+
+#### Exemplo
+
+No exemplo, os estudantes tem que resolver um dado problema, implementando o método `run` no template abaixo. Como eles não precisam alterar a função `main`, elas serão idênticas para todos os estudantes. 
+
+```java
+// BaseCode/Solution.java
+public class Solution {
+
+    // DO NOT MODIFY
+    public static void main(String[] args) {
+        Solution solution = new Solution();  
+        solution.run();
+    }
+    
+    public void run() {
+        // TODO: Implement your solution here.
+    }
+}
+```
+
+Para evitar que o JPlag dectecte similaridades na função `main` (e outras partes do template), nós podemos instruir o JPlag a ignorar conflitos com os codigos base informando a opção `--baseCode=<base-code-name>`. 
+
+O `<base-code-name>` no exemplo acima é `BaseCode`.
