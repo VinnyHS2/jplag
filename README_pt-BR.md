@@ -9,10 +9,10 @@
 [![Licença](https://img.shields.io/github/license/jplag/jplag.svg)](https://github.com/jplag/jplag/blob/master/LICENSE)
 
 ## Descrição
-O JPlag é um software que compara códigos (formatos aceitos atualmente: java1, java2, java5, java5dm, java7, java9, python3, cpp, csharp, char, text, scheme) e textos com a finalidade de detectar plagio.
+O JPlag é um software que compara códigos (formatos aceitos atualmente: java1, java2, java5, java5dm, java7, java9, python3, cpp, csharp, char, text, scheme) e textos com a finalidade de detectar plágio.
 
 ## Objetivo do repositório
-O atual repositório tem o objetivo de criar uma ferramenta que seja capaz de identificar possíveis plágios e semelhanças em códigos ou textos. 
+Este repositório é referente a um projeto executado na disciplina Engenharia de Software 1 (BCC35E) do curso de Bacharelado em Ciências da Computação da UTFPR de Campo Mourão. O objetivo do projeto é o desenvolvimento de algumas funcionalidades, considerando o processo de engenharia de software e suas atividades desde a engenharia de requisitos até a entrega. 
 
 ## Baixando e Instalando
 
@@ -20,12 +20,12 @@ O atual repositório tem o objetivo de criar uma ferramenta que seja capaz de id
 Baixe a [última versão](https://github.com/jplag/jplag/releases), a mais recente é a [v3.0.0](https://github.com/jplag/jplag/releases/tag/v3.0.0-SNAPSHOT).
 Todas as versões são disponibilizadas como um único pacote JAR executável.
 
-### Building from sources 
+### Realizando uma build a partir do código fonte 
 1. Baixe ou faça um clone deste repositório.
 2. Execute `mvn clean install` na raiz do repositório para instalar todos os submódulos. Você vai encontrar os arquivos JARs nos respectivos diretórios `target`.
 3. Dentro do diretório `jplag` execute `mvn clean generate-sources package assembly:single`. 
 
-Você irá encotnrar o JAR gerado com todas as dependencias em `jplag/target`.
+Você irá encontrar o JAR gerado com todas as dependencias em `jplag/target`.
 
 ## JPlag versão legado
 Caso você dependa de uma versão legado do JPlag nós indicamos [versão legado v2.12.1](https://github.com/jplag/jplag/releases/tag/v2.12.1-SNAPSHOT) e a [branch legado](https://github.com/jplag/jplag/tree/legacy).
@@ -37,7 +37,8 @@ As funcionalidades a seguir estão disponíveis somente a partir da versão v3.0
 * Cores melhoradas para códigos que coincidem no relatório
 * Modo de comparação paralela
 
-The following features are currently only supported in the legacy version:
+As seguintes funcionalidades estão disponíveis somente na versão legado:
+
 * Agrupamento de resultados
 * Comparação baseada no máximo de similaridade
 
@@ -54,7 +55,7 @@ O diretório raiz é utilizado pelo JPlag para procurar por submissões.
 
 ### Submissões
 
-Submissões possuem o codigo fonte que o JPlag irá analisar e comparar. Eles devem ser filhos direto do diretorio raiz e podem ser tanto arquivos únicos quanto diretórios.
+Submissões possuem o código fonte que o JPlag irá analisar e comparar. Eles devem ser filhos direto do diretorio raiz e podem ser tanto arquivos únicos quanto diretórios.
 
 #### Exemplo: Submissão de arquivo único
 
@@ -136,6 +137,6 @@ public class Solution {
 }
 ```
 
-Para evitar que o JPlag dectecte similaridades na função `main` (e outras partes do template), nós podemos instruir o JPlag a ignorar conflitos com os codigos base informando a opção `--baseCode=<base-code-name>`. 
+Para evitar que o JPlag dectecte similaridades na função `main` (e outras partes do template), nós podemos instruir o JPlag a ignorar conflitos com os códigos base informando a opção `--baseCode=<base-code-name>`. 
 
 O `<base-code-name>` no exemplo acima é `BaseCode`.
