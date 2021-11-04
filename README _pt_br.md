@@ -18,7 +18,7 @@ O atual repositório tem o objetivo de criar uma ferramenta que seja capaz de id
 
 ### Baixando uma versão
 Baixe a [última versão](https://github.com/jplag/jplag/releases), a mais recente é a [v3.0.0](https://github.com/jplag/jplag/releases/tag/v3.0.0-SNAPSHOT).
-Todas as versões são versões em jars únicos.
+Todas as versões são disponibilizadas como um único pacote JAR executável.
 
 ### Building from sources 
 1. Baixe ou faça um clone deste repositório.
