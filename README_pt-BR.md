@@ -94,7 +94,7 @@ report.writeResult(result);
 
 #### Diagrama de Classe
 <p align="center">
-	<img alt="UMLClassDiagram.png" src="UMLClassDiagram.png?raw=true" width="800">
+	<img alt="UMLClassDiagram.jng" src="UMLClassDiagram.png?raw=true" width="800">
 </p>
 
 ## Conceitos
