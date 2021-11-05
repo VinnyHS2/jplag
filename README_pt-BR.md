@@ -45,6 +45,58 @@ As seguintes funcionalidades estão disponíveis somente na versão legado:
 ## Uso
 O JPlag pode ser tanto usado por linhas de comando quanto diretamente por sua API Java.
 
+### CLI
+*Perceba que a [legacy CLI](https://github.com/jplag/jplag/blob/legacy/README.md) possui algumas diferenças.*
+
+```
+JPlag - Software de Detecção de Plágio
+
+Uso: JPlag [ opções ] [<diretório-raiz>]
+ <diretório-raiz>        O diretório do qual possui todas as submissões
+
+argumentos nomeados:
+  -h, --help             Exibe esta mensagem de ajuda e finaliza
+  -l                     {java1,java2,java5,java5dm,java7,java9,python3,cpp,csharp,char,text,scheme} Seleciona a linguagem para analisar as submissões (Padrão: java9)
+  -bc BC                 Nome do diretório que possui o código base(Framework utilizado como base em todas as submissões)
+  -v                     {quiet,long} Nivel de detalhamento do log (Padrão: quiet)
+  -d                     (Debug) parser. Arquivos não analisáveis serão armazenados (Padrão: false)
+  -S S                   Procura nos diretórios <diretório-raiz>/*/<diretório> por arquivos
+  -p P                   Lista separada por vírgulas de todos os sufixos com o nome dos arquivo incluídos
+  -x X                   Todos os arquivos com o nome nesta lista serão ignorados durante a comparação (lista separada por linhas)
+  -t T                   Altera a sensibilidade da comparação. Um valor de <n> menor terá uma sensibilidade maior
+  -m M                   Limite de similaridade [0-100]: Todas as comparações que estiverem acima deste limite serão salvas (Padrão: 0.0)
+  -n N                   Número máximo de comparações que irão ser salvas. Se o valor for -1 todas as comparações serão salvas (Padrão: 30)
+  -r R                   Nome do diretório no qual os resultados das comparações serão guardados(Padrão: result)
+  -c {normal,parallel}   Modo de comparação usado para comparar os arquivos(Padrão: normal)
+```
+
+### API Java
+
+A nova API deixou mais facil de integrar o detector de plagiarismo JPlag em projetos externos implementados em Java.
+
+#### Exemplo 
+
+```java
+JPlagOptions options = new JPlagOptions("/path/to/rootDir", LanguageOption.JAVA_1_9);
+options.setBaseCodeSubmissionName("template");
+
+JPlag jplag = new JPlag(options);
+JPlagResult result = jplag.run();
+
+List<JPlagComparison> comparisons = result.getComparisons();
+
+// Optional
+File outputDir = new File("/path/to/output");
+Report report = new Report(outputDir);
+
+report.writeResult(result);
+```
+
+#### Diagrama de Classe
+<p align="center">
+	<img alt="UMLClassDiagram.png" src="UMLClassDiagram.png?raw=true" width="800">
+</p>
+
 ## Conceitos
 
 Está seção explicará alguns dos conceitos fundamentais sobre o JPlag para facilicar seu entendimento e uso.
@@ -60,10 +112,10 @@ Submissões possuem o código fonte que o JPlag irá analisar e comparar. Eles d
 #### Exemplo: Submissão de arquivo único
 
 ```
-/path/to/root-directory
-├── Submission-1.java
+/caminho/para/diretório-raiz
+├── Submissão-1.java
 ├── ...
-└── Submission-n.java
+└── Submissão-n.java
 ```
 
 #### Exemplo: Submissão de diretórios
@@ -71,13 +123,13 @@ Submissões possuem o código fonte que o JPlag irá analisar e comparar. Eles d
 O JPlag irá ler as submissões dos diretórios recursivamente, então eles podem conter diversos (aninhado) código fonte.
 
 ```
-/path/to/root-directory
-├── Submission-1
+/caminho/para/diretório-raiz
+├── Submissão-1
 │   ├── Main.java
 │   └── util
 │       └── Utils.java
 ├── ...
-└── Submission-n
+└── Submissão-n
     ├── Main.java
     └── util
         └── Utils.java
@@ -88,8 +140,8 @@ Se você quer que o JPlag busque por um subdiretório especifico de uma submiss�
 ```
 Com a opção --subDir=src
 
-/path/to/root-directory
-├── Submission-1
+/caminho/para/diretório-raiz
+├── Submissão-1
 │   ├── src                 
 │   │   ├── Main.java       # Included
 │   │   └── util            
@@ -107,14 +159,14 @@ O código base é uma forma especial de submissão. É o padrão no qual todas a
 Como qualquer outra submissão, o código base deve estar em um único arquivo ou diretório no diretório raiz.
 
 ```
-/path/to/root-directory
-├── BaseCode
-│   └── Solution.java
-├── Submission-1
-│   └── Solution.java
+/caminho/para/diretório-raiz
+├── CódigoBase
+│   └── Solução.java
+├── Submissão-1
+│   └── Solução.java
 ├── ...
-└── Submission-n
-    └── Solution.java
+└── Submissão-n
+    └── Solução.java
 ```
 
 #### Exemplo
@@ -125,14 +177,14 @@ No exemplo, os estudantes tem que resolver um dado problema, implementando o mé
 // BaseCode/Solution.java
 public class Solution {
 
-    // DO NOT MODIFY
+    // NÃO MODIFIQUE
     public static void main(String[] args) {
         Solution solution = new Solution();  
         solution.run();
     }
     
     public void run() {
-        // TODO: Implement your solution here.
+        // TODO: Implemente seua solução aqui.
     }
 }
 ```
@@ -140,3 +192,12 @@ public class Solution {
 Para evitar que o JPlag dectecte similaridades na função `main` (e outras partes do template), nós podemos instruir o JPlag a ignorar conflitos com os códigos base informando a opção `--baseCode=<base-code-name>`. 
 
 O `<base-code-name>` no exemplo acima é `BaseCode`.
+
+## Contribuindo
+Nós ficariamos felizes em incorporar todas as melhorias ao JPlag nesse código base. Fique a vontade para criar um fork do projeto e enviar pull requests.
+
+### Adicionando novas linguagens
+Adicionar novas linguagens é bem simples. Dê uma olhada em um dos projetos `jplag.frontend`. Tudo que você precisa é uma ferramenta para analisar a linguagem (Ex., para ANTLR ou para JavaCC) e algumas linhas de código que enviam tokens (que são gerados pela ferramenta da analisar) para o JPlag.
+
+## Pesquisa
+Se você está fazendo uma pesquisa relacionada ao JPlag, nós adorariamos saber o que você está fazendo. Se sinta livre para entrar em contato conosco em jplag@ipd.kit.edu ou aqui no GitHub.
