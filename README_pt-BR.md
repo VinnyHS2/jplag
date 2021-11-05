@@ -184,7 +184,7 @@ public class Solution {
     }
     
     public void run() {
-        // TODO: Implemente seua solução aqui.
+        // TODO: Implemente sua solução aqui.
     }
 }
 ```
