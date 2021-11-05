@@ -112,10 +112,10 @@ Submissões possuem o código fonte que o JPlag irá analisar e comparar. Eles d
 #### Exemplo: Submissão de arquivo único
 
 ```
-/caminho/para/diretório-raiz
-├── Submissão-1.java
+/path/to/root-directory
+├── Submission-1.java
 ├── ...
-└── Submissão-n.java
+└── Submission-n.java
 ```
 
 #### Exemplo: Submissão de diretórios
@@ -123,13 +123,13 @@ Submissões possuem o código fonte que o JPlag irá analisar e comparar. Eles d
 O JPlag irá ler as submissões dos diretórios recursivamente, então eles podem conter diversos (aninhado) código fonte.
 
 ```
-/caminho/para/diretório-raiz
-├── Submissão-1
+/path/to/root-directory
+├── Submission-1
 │   ├── Main.java
 │   └── util
 │       └── Utils.java
 ├── ...
-└── Submissão-n
+└── Submission-n
     ├── Main.java
     └── util
         └── Utils.java
@@ -140,8 +140,8 @@ Se você quer que o JPlag busque por um subdiretório especifico de uma submiss�
 ```
 Com a opção --subDir=src
 
-/caminho/para/diretório-raiz
-├── Submissão-1
+/path/to/root-directory
+├── Submission-1
 │   ├── src                 
 │   │   ├── Main.java       # Included
 │   │   └── util            
@@ -159,14 +159,14 @@ O código base é uma forma especial de submissão. É o padrão no qual todas a
 Como qualquer outra submissão, o código base deve estar em um único arquivo ou diretório no diretório raiz.
 
 ```
-/caminho/para/diretório-raiz
-├── CódigoBase
-│   └── Solução.java
-├── Submissão-1
-│   └── Solução.java
+/path/to/root-directory
+├── BaseCode
+│   └── Solution.java
+├── Submission-1
+│   └── Solution.java
 ├── ...
-└── Submissão-n
-    └── Solução.java
+└── Submission-n
+    └── Solution.java
 ```
 
 #### Exemplo
