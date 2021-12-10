@@ -4,9 +4,34 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>javascript</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.coderplus.maven.plugins</groupId>
+        <artifactId>copy-rename-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>copy-file</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <sourceFile>src/main/antlr4/de/jplag/javascript/grammar/antlr4_imports/JavaScriptParserBase.java</sourceFile>
+                  <destinationFile>target/generated-sources/antlr4/de/jplag/javascript/grammar/JavaScriptParserBase.java</destinationFile>
+                </fileSet>
+                <fileSet>
+                  <sourceFile>src/main/antlr4/de/jplag/javascript/grammar/antlr4_imports/JavaScriptLexerBase.java</sourceFile>
+                  <destinationFile>target/generated-sources/antlr4/de/jplag/javascript/grammar/JavaScriptLexerBase.java</destinationFile>
+                </fileSet>                
+              </fileSets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -39,9 +64,9 @@
         <version>4.9.3</version>
         <executions>
           <execution>
-            <goals>
-              <goal>antlr4</goal>
-            </goals>
+              <goals>
+                <goal>antlr4</goal>
+              </goals>
           </execution>
         </executions>
       </plugin>

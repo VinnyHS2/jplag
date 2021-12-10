@@ -8,17 +8,13 @@ import de.jplag.javascript.grammar.JavaScriptParserListener;
 import de.jplag.javascript.grammar.JavaScriptParser;
 import de.jplag.javascript.grammar.JavaScriptParser.*;
 
-public class JplagECMAScriptListener implements JavaScriptParserListener, JavaScriptTokenConstants {
+public class JplagJavaScriptListener implements JavaScriptParserListener, JavaScriptTokenConstants {
 
     private Parser jplagParser;
 
-    public JplagECMAScriptListener(de.jplag.javascript.Parser jplag) {
+    public JplagJavaScriptListener(de.jplag.javascript.Parser jplag) {
         jplagParser = jplag;
     }
-
-    // @Override
-	// public void enterEof(ECMAScriptParser.EofContext ctx) {
-	// }
 
     @Override
     public void visitErrorNode(ErrorNode node) {

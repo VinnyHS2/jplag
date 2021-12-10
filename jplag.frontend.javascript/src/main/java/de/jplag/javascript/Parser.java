@@ -60,7 +60,7 @@ public class Parser extends AbstractParser implements JavaScriptTokenConstants {
             ParseTreeWalker ptw = new ParseTreeWalker();
             for (int i = 0; i < in.getChildCount(); i++) {
                 ParseTree pt = in.getChild(i);
-                ptw.walk(new JplagECMAScriptListener(this), pt);
+                ptw.walk(new JplagJavaScriptListener(this), pt);
             }
 
         } catch (IOException e) {
