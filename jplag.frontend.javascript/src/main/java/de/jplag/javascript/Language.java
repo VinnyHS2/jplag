@@ -67,11 +67,11 @@ public class Language implements de.jplag.Language {
 
     @Override
     public int numberOfTokens() {
-        return ECMAScriptTokenConstants.NUM_DIFF_TOKENS;
+        return JavaScriptTokenConstants.NUM_DIFF_TOKENS;
     }
 
     @Override
     public String type2string(int type) {
-        return ECMAScriptToken.type2string(type);
+        return JavaScriptToken.type2string(type);
     }
 }

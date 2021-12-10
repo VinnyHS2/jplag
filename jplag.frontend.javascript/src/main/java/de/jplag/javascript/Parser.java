@@ -14,11 +14,11 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import de.jplag.AbstractParser;
 import de.jplag.TokenList;
-import de.jplag.javascript.grammar.ECMAScriptLexer;
-import de.jplag.javascript.grammar.ECMAScriptParser;
-import de.jplag.javascript.grammar.ECMAScriptParser.ProgramContext;
+import de.jplag.javascript.grammar.JavaScriptLexer;
+import de.jplag.javascript.grammar.JavaScriptParser;
+import de.jplag.javascript.grammar.JavaScriptParser.ProgramContext;
 
-public class Parser extends AbstractParser implements ECMAScriptTokenConstants {
+public class Parser extends AbstractParser implements JavaScriptTokenConstants {
 
     private TokenList struct = new TokenList();
     private String currentFile;
@@ -32,7 +32,7 @@ public class Parser extends AbstractParser implements ECMAScriptTokenConstants {
                 errors++;
             }
             System.gc();//Emeric
-            struct.addToken(new ECMAScriptToken(FILE_END, files[i], -1, -1, -1));
+            struct.addToken(new JavaScriptToken(FILE_END, files[i], -1, -1, -1));
         }
         this.parseEnd();
         return struct;
@@ -48,13 +48,13 @@ public class Parser extends AbstractParser implements ECMAScriptTokenConstants {
             input = CharStreams.fromStream(fis);
 
             // create a lexer that feeds off of input CharStream
-            ECMAScriptLexer lexer = new ECMAScriptLexer(input);
+            JavaScriptLexer lexer = new JavaScriptLexer(input);
 
             // create a buffer of tokens pulled from the lexer
             CommonTokenStream tokens = new CommonTokenStream(lexer);
 
             // create a parser that feeds off the tokens buffer
-            ECMAScriptParser parser = new ECMAScriptParser(tokens);
+            JavaScriptParser parser = new JavaScriptParser(tokens);
             ProgramContext in = parser.program();
 
             ParseTreeWalker ptw = new ParseTreeWalker();
@@ -72,11 +72,11 @@ public class Parser extends AbstractParser implements ECMAScriptTokenConstants {
     }
 
     public void add(int type, Token tok) {
-        struct.addToken(new ECMAScriptToken(type, (currentFile == null ? "null" : currentFile), tok.getLine(), tok.getCharPositionInLine() + 1,
+        struct.addToken(new JavaScriptToken(type, (currentFile == null ? "null" : currentFile), tok.getLine(), tok.getCharPositionInLine() + 1,
                 tok.getText().length()));
     }
 
     public void addEnd(int type, Token tok) {
-        struct.addToken(new ECMAScriptToken(type, (currentFile == null ? "null" : currentFile), tok.getLine(), struct.getToken(struct.size()-1).getColumn() + 1,0));
+        struct.addToken(new JavaScriptToken(type, (currentFile == null ? "null" : currentFile), tok.getLine(), struct.getToken(struct.size()-1).getColumn() + 1,0));
     }
 }

@@ -194,6 +194,11 @@
 
     <dependency>
       <groupId>de.jplag</groupId>
+      <artifactId>javascript</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>de.jplag</groupId>
       <artifactId>chars</artifactId>
     </dependency>
     <dependency>

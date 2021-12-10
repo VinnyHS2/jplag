@@ -2,13 +2,13 @@ package de.jplag.javascript;
 
 import de.jplag.Token;
 
-public class ECMAScriptToken extends Token implements ECMAScriptTokenConstants {
+public class JavaScriptToken extends Token implements JavaScriptTokenConstants {
 
     private static final long serialVersionUID = 1485877548175917943L;
     
     private int line, column, length;
 
-    public ECMAScriptToken(int type, String file, int line, int column, int length) {
+    public JavaScriptToken(int type, String file, int line, int column, int length) {
         super(type, file, line, column, length);
     }
 
@@ -44,9 +44,9 @@ public class ECMAScriptToken extends Token implements ECMAScriptTokenConstants {
 
     public static String type2string(int type) {
         switch (type) {
-            case ECMAScriptTokenConstants.FILE_END:
+            case JavaScriptTokenConstants.FILE_END:
                 return "********";
-            case ECMAScriptTokenConstants.SEPARATOR_TOKEN:
+            case JavaScriptTokenConstants.SEPARATOR_TOKEN:
                 return "METHOD_SEPARATOR";
 
             case IMPORT:
@@ -109,6 +109,24 @@ public class ECMAScriptToken extends Token implements ECMAScriptTokenConstants {
                 return "WITH{   ";
             case WITH_END:
                 return "}WITH   ";
+            case DO_BEGIN:
+                return "DO{     ";
+            case DO_END:
+                return "}DO     ";
+            case FUNCTION_BEGIN:
+                return "FUNCTION{     ";
+            case FUNCTION_END:
+                return "}FUNCTION     ";
+            case THROW_BEGIN:
+                return "THROW{   ";
+            case THROW_END:
+                return "}THROW   ";
+            case SWITH_BEGIN:
+                return "SWITH{   ";
+            case SWITH_END:
+                return "}SWITH   ";
+            case DEFAULT:
+                return "DEFAULT  ";
             default:
                 System.err.println("*UNKNOWN: " + type);
                 return "*UNKNOWN" + type;

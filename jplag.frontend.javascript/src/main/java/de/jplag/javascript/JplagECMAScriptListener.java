@@ -4,10 +4,11 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import de.jplag.javascript.grammar.ECMAScriptListener;
-import de.jplag.javascript.grammar.ECMAScriptParser;
+import de.jplag.javascript.grammar.JavaScriptParserListener;
+import de.jplag.javascript.grammar.JavaScriptParser;
+import de.jplag.javascript.grammar.JavaScriptParser.*;
 
-public class JplagECMAScriptListener implements ECMAScriptListener, ECMAScriptTokenConstants {
+public class JplagECMAScriptListener implements JavaScriptParserListener, JavaScriptTokenConstants {
 
     private Parser jplagParser;
 
@@ -15,813 +16,1639 @@ public class JplagECMAScriptListener implements ECMAScriptListener, ECMAScriptTo
         jplagParser = jplag;
     }
 
-    @Override
-	public void enterEof(ECMAScriptParser.EofContext ctx) {
-	}
-
-    @Override
-	public void exitEof(ECMAScriptParser.EofContext ctx) {
-	}
-
-    @Override
-    public void enterEos(ECMAScriptParser.EosContext ctx) {
-    }
-
-    @Override
-    public void exitEos(ECMAScriptParser.EosContext ctx) {
-    }
-
-    @Override
-    public void enterSetter(ECMAScriptParser.SetterContext ctx) {
-    }
-
-    @Override
-    public void exitSetter(ECMAScriptParser.SetterContext ctx) {
-    }
-
-    @Override
-    public void enterGetter(ECMAScriptParser.GetterContext ctx) {
-    }
-
-    @Override
-    public void exitGetter(ECMAScriptParser.GetterContext ctx) {
-    }
-
-    @Override
-    public void enterFutureReservedWord(ECMAScriptParser.FutureReservedWordContext ctx) {
-    }
-
-    @Override
-    public void exitFutureReservedWord(ECMAScriptParser.FutureReservedWordContext ctx) {
-    }
-
-    @Override
-    public void enterKeyword(ECMAScriptParser.KeywordContext ctx) {
-    }
-
-    @Override
-    public void exitKeyword(ECMAScriptParser.KeywordContext ctx) {
-    }
-
-    @Override
-    public void enterReservedWord(ECMAScriptParser.ReservedWordContext ctx) {
-    }
-
-    @Override
-    public void exitReservedWord(ECMAScriptParser.ReservedWordContext ctx) {
-    }
-
-    @Override
-    public void enterIdentifierName(ECMAScriptParser.IdentifierNameContext ctx) {
-    }
-
-    @Override
-    public void exitIdentifierName(ECMAScriptParser.IdentifierNameContext ctx) {
-    }
-
-    @Override
-    public void enterLiteral(ECMAScriptParser.LiteralContext ctx) {
-    }
-
-    @Override
-    public void exitLiteral(ECMAScriptParser.LiteralContext ctx) {
-    }
-
-    @Override
-    public void enterNumericLiteral(ECMAScriptParser.NumericLiteralContext ctx) {
-    }
-
-    @Override
-    public void exitNumericLiteral(ECMAScriptParser.NumericLiteralContext ctx) {
-    }
-
-    @Override
-    public void enterAssignmentOperator(ECMAScriptParser.AssignmentOperatorContext ctx) {
-    }
-
-    @Override
-    public void exitAssignmentOperator(ECMAScriptParser.AssignmentOperatorContext ctx) {
-    }
-
-    @Override
-    public void enterVoidExpression(ECMAScriptParser.VoidExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitVoidExpression(ECMAScriptParser.VoidExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterAssignmentOperatorExpression(ECMAScriptParser.AssignmentOperatorExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitAssignmentOperatorExpression(ECMAScriptParser.AssignmentOperatorExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterBitOrExpression(ECMAScriptParser.BitOrExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitBitOrExpression(ECMAScriptParser.BitOrExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterBitAndExpression(ECMAScriptParser.BitAndExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitBitAndExpression(ECMAScriptParser.BitAndExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterIdentifierExpression(ECMAScriptParser.IdentifierExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitIdentifierExpression(ECMAScriptParser.IdentifierExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterMemberIndexExpression(ECMAScriptParser.MemberIndexExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitMemberIndexExpression(ECMAScriptParser.MemberIndexExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterMemberDotExpression(ECMAScriptParser.MemberDotExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitMemberDotExpression(ECMAScriptParser.MemberDotExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterArrayLiteralExpression(ECMAScriptParser.ArrayLiteralExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitArrayLiteralExpression(ECMAScriptParser.ArrayLiteralExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterLiteralExpression(ECMAScriptParser.LiteralExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitLiteralExpression(ECMAScriptParser.LiteralExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterNewExpression(ECMAScriptParser.NewExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitNewExpression(ECMAScriptParser.NewExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterPostIncrementExpression(ECMAScriptParser.PostIncrementExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitPostIncrementExpression(ECMAScriptParser.PostIncrementExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterBitNotExpression(ECMAScriptParser.BitNotExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitBitNotExpression(ECMAScriptParser.BitNotExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterRelationalExpression(ECMAScriptParser.RelationalExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitRelationalExpression(ECMAScriptParser.RelationalExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterAdditiveExpression(ECMAScriptParser.AdditiveExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitAdditiveExpression(ECMAScriptParser.AdditiveExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterParenthesizedExpression(ECMAScriptParser.ParenthesizedExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitParenthesizedExpression(ECMAScriptParser.ParenthesizedExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterBitShiftExpression(ECMAScriptParser.BitShiftExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitBitShiftExpression(ECMAScriptParser.BitShiftExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterMultiplicativeExpression(ECMAScriptParser.MultiplicativeExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitMultiplicativeExpression(ECMAScriptParser.MultiplicativeExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterBitXOrExpression(ECMAScriptParser.BitXOrExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitBitXOrExpression(ECMAScriptParser.BitXOrExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterEqualityExpression(ECMAScriptParser.EqualityExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitEqualityExpression(ECMAScriptParser.EqualityExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterDeleteExpression(ECMAScriptParser.DeleteExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitDeleteExpression(ECMAScriptParser.DeleteExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterUnaryPlusExpression(ECMAScriptParser.UnaryPlusExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitUnaryPlusExpression(ECMAScriptParser.UnaryPlusExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterInstanceofExpression(ECMAScriptParser.InstanceofExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitInstanceofExpression(ECMAScriptParser.InstanceofExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterTypeofExpression(ECMAScriptParser.TypeofExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitTypeofExpression(ECMAScriptParser.TypeofExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterAssignmentExpression(ECMAScriptParser.AssignmentExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitAssignmentExpression(ECMAScriptParser.AssignmentExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterPostDecreaseExpression(ECMAScriptParser.PostDecreaseExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitPostDecreaseExpression(ECMAScriptParser.PostDecreaseExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterUnaryMinusExpression(ECMAScriptParser.UnaryMinusExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitUnaryMinusExpression(ECMAScriptParser.UnaryMinusExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterFunctionExpression(ECMAScriptParser.FunctionExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitFunctionExpression(ECMAScriptParser.FunctionExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterThisExpression(ECMAScriptParser.ThisExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitThisExpression(ECMAScriptParser.ThisExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterArgumentsExpression(ECMAScriptParser.ArgumentsExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitArgumentsExpression(ECMAScriptParser.ArgumentsExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterPreDecreaseExpression(ECMAScriptParser.PreDecreaseExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitPreDecreaseExpression(ECMAScriptParser.PreDecreaseExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterNotExpression(ECMAScriptParser.NotExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitNotExpression(ECMAScriptParser.NotExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterLogicalOrExpression(ECMAScriptParser.LogicalOrExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitLogicalOrExpression(ECMAScriptParser.LogicalOrExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterInExpression(ECMAScriptParser.InExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitInExpression(ECMAScriptParser.InExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterObjectLiteralExpression(ECMAScriptParser.ObjectLiteralExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitObjectLiteralExpression(ECMAScriptParser.ObjectLiteralExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterLogicalAndExpression(ECMAScriptParser.LogicalAndExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitLogicalAndExpression(ECMAScriptParser.LogicalAndExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterTernaryExpression(ECMAScriptParser.TernaryExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitTernaryExpression(ECMAScriptParser.TernaryExpressionContext ctx) {
-    }
-
-    @Override
-    public void enterExpressionSequence(ECMAScriptParser.ExpressionSequenceContext ctx) {
-    }
-
-    @Override
-    public void exitExpressionSequence(ECMAScriptParser.ExpressionSequenceContext ctx) {
-    }
-
-    @Override
-    public void enterArgumentList(ECMAScriptParser.ArgumentListContext ctx) {
-    }
-
-    @Override
-    public void exitArgumentList(ECMAScriptParser.ArgumentListContext ctx) {
-    }
-
-    @Override
-    public void enterArguments(ECMAScriptParser.ArgumentsContext ctx) {
-    }
-
-    @Override
-    public void exitArguments(ECMAScriptParser.ArgumentsContext ctx) {
-    }
-
-    @Override
-    public void enterPropertySetParameterList(ECMAScriptParser.PropertySetParameterListContext ctx) {
-    }
-
-    @Override
-    public void exitPropertySetParameterList(ECMAScriptParser.PropertySetParameterListContext ctx) {
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    @Override
-    public void enterStatementList(ECMAScriptParser.StatementListContext ctx) {
-    }
-
-    @Override
-    public void exitStatementList(ECMAScriptParser.StatementListContext ctx) {
-    }
-    
-    @Override
-    public void enterVariableStatement(ECMAScriptParser.VariableStatementContext ctx) {
-    }
-
-    @Override
-    public void exitVariableStatement(ECMAScriptParser.VariableStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterVariableDeclarationList(ECMAScriptParser.VariableDeclarationListContext ctx) {
-    }
-
-    @Override
-    public void exitVariableDeclarationList(ECMAScriptParser.VariableDeclarationListContext ctx) {
-    }
-    
-    @Override
-    public void enterVariableDeclaration(ECMAScriptParser.VariableDeclarationContext ctx) {
-    }
-
-    @Override
-    public void exitVariableDeclaration(ECMAScriptParser.VariableDeclarationContext ctx) {
-    }
-    
-    @Override
-    public void enterInitialiser(ECMAScriptParser.InitialiserContext ctx) {
-    }
-
-    @Override
-    public void exitInitialiser(ECMAScriptParser.InitialiserContext ctx) {
-    }
-    
-    @Override
-    public void enterEmptyStatement(ECMAScriptParser.EmptyStatementContext ctx) {
-    }
-
-    @Override
-    public void exitEmptyStatement(ECMAScriptParser.EmptyStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterExpressionStatement(ECMAScriptParser.ExpressionStatementContext ctx) {
-    }
-
-    @Override
-    public void exitExpressionStatement(ECMAScriptParser.ExpressionStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterIfStatement(ECMAScriptParser.IfStatementContext ctx) {
-    }
-
-    @Override
-    public void exitIfStatement(ECMAScriptParser.IfStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterDoStatement(ECMAScriptParser.DoStatementContext ctx) {
-    }
-
-    @Override
-    public void exitDoStatement(ECMAScriptParser.DoStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterForVarStatement(ECMAScriptParser.ForVarStatementContext ctx) {
-    }
-
-    @Override
-    public void exitForVarStatement(ECMAScriptParser.ForVarStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterForVarInStatement(ECMAScriptParser.ForVarInStatementContext ctx) {
-    }
-
-    @Override
-    public void exitForVarInStatement(ECMAScriptParser.ForVarInStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterWhileStatement(ECMAScriptParser.WhileStatementContext ctx) {
-    }
-
-    @Override
-    public void exitWhileStatement(ECMAScriptParser.WhileStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterForStatement(ECMAScriptParser.ForStatementContext ctx) {
-    }
-
-    @Override
-    public void exitForStatement(ECMAScriptParser.ForStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterForInStatement(ECMAScriptParser.ForInStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterBreakStatement(ECMAScriptParser.BreakStatementContext ctx) {
-    }
-
-    @Override
-    public void exitBreakStatement(ECMAScriptParser.BreakStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterReturnStatement(ECMAScriptParser.ReturnStatementContext ctx) {
-    }
-
-    @Override
-    public void exitReturnStatement(ECMAScriptParser.ReturnStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterWithStatement(ECMAScriptParser.WithStatementContext ctx) {
-    }
-
-    @Override
-    public void exitWithStatement(ECMAScriptParser.WithStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterSwitchStatement(ECMAScriptParser.SwitchStatementContext ctx) {
-    }
-
-    @Override
-    public void exitSwitchStatement(ECMAScriptParser.SwitchStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterCaseBlock(ECMAScriptParser.CaseBlockContext ctx) {
-    }
-
-    @Override
-    public void exitCaseBlock(ECMAScriptParser.CaseBlockContext ctx) {
-    }
-    
-    @Override
-    public void enterCaseClauses(ECMAScriptParser.CaseClausesContext ctx) {
-    }
-
-    @Override
-    public void exitCaseClauses(ECMAScriptParser.CaseClausesContext ctx) {
-    }
-    
-    @Override
-    public void enterCaseClause(ECMAScriptParser.CaseClauseContext ctx) {
-    }
-
-    @Override
-    public void exitCaseClause(ECMAScriptParser.CaseClauseContext ctx) {
-    }
-    
-    @Override
-    public void enterDefaultClause(ECMAScriptParser.DefaultClauseContext ctx) {
-    }
-
-    @Override
-    public void exitDefaultClause(ECMAScriptParser.DefaultClauseContext ctx) {
-    }
-    
-    @Override
-    public void enterLabelledStatement(ECMAScriptParser.LabelledStatementContext ctx) {
-    }
-
-    @Override
-    public void exitLabelledStatement(ECMAScriptParser.LabelledStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterThrowStatement(ECMAScriptParser.ThrowStatementContext ctx) {
-    }
-
-    @Override
-    public void exitThrowStatement(ECMAScriptParser.ThrowStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterTryStatement(ECMAScriptParser.TryStatementContext ctx) {
-    }
-
-    @Override
-    public void exitTryStatement(ECMAScriptParser.TryStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterCatchProduction(ECMAScriptParser.CatchProductionContext ctx) {
-    }
-
-    @Override
-    public void exitCatchProduction(ECMAScriptParser.CatchProductionContext ctx) {
-    }
-    
-    @Override
-    public void enterFinallyProduction(ECMAScriptParser.FinallyProductionContext ctx) {
-    }
-
-    @Override
-    public void exitFinallyProduction(ECMAScriptParser.FinallyProductionContext ctx) {
-    }
-    
-    @Override
-    public void enterDebuggerStatement(ECMAScriptParser.DebuggerStatementContext ctx) {
-    }
-
-    @Override
-    public void exitDebuggerStatement(ECMAScriptParser.DebuggerStatementContext ctx) {
-    }
-    
-    @Override
-    public void enterFunctionDeclaration(ECMAScriptParser.FunctionDeclarationContext ctx) {
-    }
-
-    @Override
-    public void exitFunctionDeclaration(ECMAScriptParser.FunctionDeclarationContext ctx) {
-    }
-    
-    @Override
-    public void enterFormalParameterList(ECMAScriptParser.FormalParameterListContext ctx) {
-    }
-
-    @Override
-    public void exitFormalParameterList(ECMAScriptParser.FormalParameterListContext ctx) {
-    }
-    
-    @Override
-    public void enterFunctionBody(ECMAScriptParser.FunctionBodyContext ctx) {
-    }
-
-    @Override
-    public void exitFunctionBody(ECMAScriptParser.FunctionBodyContext ctx) {
-    }
-    
-    @Override
-    public void enterPreIncrementExpression(ECMAScriptParser.PreIncrementExpressionContext ctx) {
-    }
-
-    @Override
-    public void exitPreIncrementExpression(ECMAScriptParser.PreIncrementExpressionContext ctx) {
-    }
-    
-    @Override
-    public void enterArrayLiteral(ECMAScriptParser.ArrayLiteralContext ctx) {
-    }
-
-    @Override
-    public void exitArrayLiteral(ECMAScriptParser.ArrayLiteralContext ctx) {
-    }
-    
-    @Override
-    public void enterElementList(ECMAScriptParser.ElementListContext ctx) {
-    }
-
-    @Override
-    public void exitElementList(ECMAScriptParser.ElementListContext ctx) {
-    }
-    
-    @Override
-    public void enterElision(ECMAScriptParser.ElisionContext ctx) {
-    }
-
-    @Override
-    public void exitElision(ECMAScriptParser.ElisionContext ctx) {
-    }
-    
-    @Override
-    public void enterObjectLiteral(ECMAScriptParser.ObjectLiteralContext ctx) {
-    }
-
-    @Override
-    public void exitObjectLiteral(ECMAScriptParser.ObjectLiteralContext ctx) {
-    }
-    
-    @Override
-    public void enterPropertyNameAndValueList(ECMAScriptParser.PropertyNameAndValueListContext ctx) {
-    }
+    // @Override
+	// public void enterEof(ECMAScriptParser.EofContext ctx) {
+	// }
 
     @Override
-    public void exitPropertyNameAndValueList(ECMAScriptParser.PropertyNameAndValueListContext ctx) {
-    }
+    public void visitErrorNode(ErrorNode node) {
         
-    @Override
-    public void enterPropertySetter(ECMAScriptParser.PropertySetterContext ctx) {
-    }
-
-    @Override
-    public void exitPropertySetter(ECMAScriptParser.PropertySetterContext ctx) {
-    }
-    
-    @Override
-    public void enterPropertyGetter(ECMAScriptParser.PropertyGetterContext ctx) {
-    }
-
-    @Override
-    public void exitPropertyGetter(ECMAScriptParser.PropertyGetterContext ctx) {
-    }
-    
-    @Override
-    public void enterPropertyName(ECMAScriptParser.PropertyNameContext ctx) {
-    }
-
-    @Override
-    public void exitPropertyName(ECMAScriptParser.PropertyNameContext ctx) {
-    }
-    
-    @Override
-    public void enterPropertyExpressionAssignment(ECMAScriptParser.PropertyExpressionAssignmentContext ctx) {
-    }
-
-    @Override
-    public void exitPropertyExpressionAssignment(ECMAScriptParser.PropertyExpressionAssignmentContext ctx) {
-    }
-    
-    @Override
-    public void enterContinueStatement(ECMAScriptParser.ContinueStatementContext ctx) {
-    }
-
-    @Override
-    public void exitContinueStatement(ECMAScriptParser.ContinueStatementContext ctx) {
-    }
-
-    @Override
-    public void exitForInStatement(ECMAScriptParser.ForInStatementContext ctx) {
-    }
-
-    @Override
-    public void enterBlock(ECMAScriptParser.BlockContext ctx) {
-    }
-
-    @Override
-    public void exitBlock(ECMAScriptParser.BlockContext ctx) {
-    }
-
-    @Override
-    public void enterStatement(ECMAScriptParser.StatementContext ctx) {
-    }
-
-    @Override
-    public void exitStatement(ECMAScriptParser.StatementContext ctx) {
-    }
-
-    @Override
-    public void enterSourceElement(ECMAScriptParser.SourceElementContext ctx) {
-    }
-
-    @Override
-    public void exitSourceElement(ECMAScriptParser.SourceElementContext ctx) {
-    }
-
-    @Override
-    public void enterSourceElements(ECMAScriptParser.SourceElementsContext ctx) {
-    }
-
-    @Override
-    public void exitSourceElements(ECMAScriptParser.SourceElementsContext ctx) {
-    }
-
-    @Override
-    public void enterProgram(ECMAScriptParser.ProgramContext ctx) {
-    }
-
-    @Override
-    public void exitProgram(ECMAScriptParser.ProgramContext ctx) {
+        
     }
 
     @Override
     public void enterEveryRule(ParserRuleContext ctx) {
+        
+        
     }
 
     @Override
     public void exitEveryRule(ParserRuleContext ctx) {
+        
+        
     }
-    
+
     @Override
-    public void visitErrorNode(ErrorNode node) {
+    public void enterProgram(ProgramContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitProgram(ProgramContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterSourceElement(SourceElementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitSourceElement(SourceElementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterStatement(StatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitStatement(StatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterBlock(BlockContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitBlock(BlockContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterStatementList(StatementListContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitStatementList(StatementListContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterImportStatement(ImportStatementContext ctx) {
+        jplagParser.add(IMPORT, ctx.getStart());
+        
+        
+    }
+
+    @Override
+    public void exitImportStatement(ImportStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterImportFromBlock(ImportFromBlockContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitImportFromBlock(ImportFromBlockContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterModuleItems(ModuleItemsContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitModuleItems(ModuleItemsContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterImportDefault(ImportDefaultContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitImportDefault(ImportDefaultContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterImportNamespace(ImportNamespaceContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitImportNamespace(ImportNamespaceContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterImportFrom(ImportFromContext ctx) {
+        jplagParser.add(IMPORT, ctx.getStart());
+        
+        
+    }
+
+    @Override
+    public void exitImportFrom(ImportFromContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterAliasName(AliasNameContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitAliasName(AliasNameContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterExportDeclaration(ExportDeclarationContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitExportDeclaration(ExportDeclarationContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterExportDefaultDeclaration(ExportDefaultDeclarationContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitExportDefaultDeclaration(ExportDefaultDeclarationContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterExportFromBlock(ExportFromBlockContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitExportFromBlock(ExportFromBlockContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterDeclaration(DeclarationContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitDeclaration(DeclarationContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterVariableStatement(VariableStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitVariableStatement(VariableStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterVariableDeclarationList(VariableDeclarationListContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitVariableDeclarationList(VariableDeclarationListContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterVariableDeclaration(VariableDeclarationContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitVariableDeclaration(VariableDeclarationContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterEmptyStatement(EmptyStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitEmptyStatement(EmptyStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterExpressionStatement(ExpressionStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitExpressionStatement(ExpressionStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterIfStatement(IfStatementContext ctx) {
+        jplagParser.add(IF_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitIfStatement(IfStatementContext ctx) {
+        jplagParser.addEnd(IF_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterDoStatement(DoStatementContext ctx) {
+        jplagParser.addEnd(DO_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitDoStatement(DoStatementContext ctx) {
+        jplagParser.addEnd(DO_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterWhileStatement(WhileStatementContext ctx) {
+        jplagParser.add(WHILE_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitWhileStatement(WhileStatementContext ctx) {
+        jplagParser.addEnd(WHILE_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterForStatement(ForStatementContext ctx) {
+        jplagParser.add(FOR_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitForStatement(ForStatementContext ctx) {
+        jplagParser.addEnd(FOR_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterForInStatement(ForInStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitForInStatement(ForInStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterForOfStatement(ForOfStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitForOfStatement(ForOfStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterVarModifier(VarModifierContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitVarModifier(VarModifierContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterContinueStatement(ContinueStatementContext ctx) {
+        jplagParser.add(CONTINUE, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitContinueStatement(ContinueStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterBreakStatement(BreakStatementContext ctx) {
+        jplagParser.add(BREAK, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitBreakStatement(BreakStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterReturnStatement(ReturnStatementContext ctx) {
+        jplagParser.add(RETURN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitReturnStatement(ReturnStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterYieldStatement(YieldStatementContext ctx) {
+        jplagParser.add(YIELD, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitYieldStatement(YieldStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterWithStatement(WithStatementContext ctx) {
+        jplagParser.add(WITH_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitWithStatement(WithStatementContext ctx) {
+        jplagParser.addEnd(WITH_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterSwitchStatement(SwitchStatementContext ctx) {
+        jplagParser.addEnd(SWITH_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitSwitchStatement(SwitchStatementContext ctx) {
+        jplagParser.addEnd(SWITH_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterCaseBlock(CaseBlockContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitCaseBlock(CaseBlockContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterCaseClauses(CaseClausesContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitCaseClauses(CaseClausesContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterCaseClause(CaseClauseContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitCaseClause(CaseClauseContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterDefaultClause(DefaultClauseContext ctx) {
+        jplagParser.add(DEFAULT, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitDefaultClause(DefaultClauseContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterLabelledStatement(LabelledStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitLabelledStatement(LabelledStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterThrowStatement(ThrowStatementContext ctx) {
+        jplagParser.addEnd(THROW_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitThrowStatement(ThrowStatementContext ctx) {
+        jplagParser.addEnd(THROW_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterTryStatement(TryStatementContext ctx) {
+        jplagParser.add(TRY_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitTryStatement(TryStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterCatchProduction(CatchProductionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitCatchProduction(CatchProductionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterFinallyProduction(FinallyProductionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitFinallyProduction(FinallyProductionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterDebuggerStatement(DebuggerStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitDebuggerStatement(DebuggerStatementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterFunctionDeclaration(FunctionDeclarationContext ctx) {
+        jplagParser.add(FUNCTION_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitFunctionDeclaration(FunctionDeclarationContext ctx) {
+        jplagParser.add(FUNCTION_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterClassDeclaration(ClassDeclarationContext ctx) {
+        jplagParser.add(CLASS_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitClassDeclaration(ClassDeclarationContext ctx) {
+        jplagParser.addEnd(CLASS_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterClassTail(ClassTailContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitClassTail(ClassTailContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterClassElement(ClassElementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitClassElement(ClassElementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterMethodDefinition(MethodDefinitionContext ctx) {
+        jplagParser.add(METHOD_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitMethodDefinition(MethodDefinitionContext ctx) {
+        jplagParser.addEnd(METHOD_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterFormalParameterList(FormalParameterListContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitFormalParameterList(FormalParameterListContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterFormalParameterArg(FormalParameterArgContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitFormalParameterArg(FormalParameterArgContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterLastFormalParameterArg(LastFormalParameterArgContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitLastFormalParameterArg(LastFormalParameterArgContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterFunctionBody(FunctionBodyContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitFunctionBody(FunctionBodyContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterSourceElements(SourceElementsContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitSourceElements(SourceElementsContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArrayLiteral(ArrayLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArrayLiteral(ArrayLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterElementList(ElementListContext ctx) {
+        if (ctx.getText().contains(",")) {
+            jplagParser.add(ARRAY, ctx.getStart());
+        }
+        
+    }
+
+    @Override
+    public void exitElementList(ElementListContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArrayElement(ArrayElementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArrayElement(ArrayElementContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPropertyExpressionAssignment(PropertyExpressionAssignmentContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPropertyExpressionAssignment(PropertyExpressionAssignmentContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterComputedPropertyExpressionAssignment(ComputedPropertyExpressionAssignmentContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitComputedPropertyExpressionAssignment(ComputedPropertyExpressionAssignmentContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterFunctionProperty(FunctionPropertyContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitFunctionProperty(FunctionPropertyContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPropertyGetter(PropertyGetterContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPropertyGetter(PropertyGetterContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPropertySetter(PropertySetterContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPropertySetter(PropertySetterContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPropertyShorthand(PropertyShorthandContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPropertyShorthand(PropertyShorthandContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPropertyName(PropertyNameContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPropertyName(PropertyNameContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArguments(ArgumentsContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArguments(ArgumentsContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArgument(ArgumentContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArgument(ArgumentContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterExpressionSequence(ExpressionSequenceContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitExpressionSequence(ExpressionSequenceContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterTemplateStringExpression(TemplateStringExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitTemplateStringExpression(TemplateStringExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterTernaryExpression(TernaryExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitTernaryExpression(TernaryExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterLogicalAndExpression(LogicalAndExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitLogicalAndExpression(LogicalAndExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPowerExpression(PowerExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPowerExpression(PowerExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPreIncrementExpression(PreIncrementExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPreIncrementExpression(PreIncrementExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterObjectLiteralExpression(ObjectLiteralExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitObjectLiteralExpression(ObjectLiteralExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterMetaExpression(MetaExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitMetaExpression(MetaExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterInExpression(InExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitInExpression(InExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterLogicalOrExpression(LogicalOrExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitLogicalOrExpression(LogicalOrExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterNotExpression(NotExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitNotExpression(NotExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPreDecreaseExpression(PreDecreaseExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPreDecreaseExpression(PreDecreaseExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArgumentsExpression(ArgumentsExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArgumentsExpression(ArgumentsExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterAwaitExpression(AwaitExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitAwaitExpression(AwaitExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterThisExpression(ThisExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitThisExpression(ThisExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterFunctionExpression(FunctionExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitFunctionExpression(FunctionExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterUnaryMinusExpression(UnaryMinusExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitUnaryMinusExpression(UnaryMinusExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterAssignmentExpression(AssignmentExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitAssignmentExpression(AssignmentExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPostDecreaseExpression(PostDecreaseExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPostDecreaseExpression(PostDecreaseExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterTypeofExpression(TypeofExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitTypeofExpression(TypeofExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterInstanceofExpression(InstanceofExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitInstanceofExpression(InstanceofExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterUnaryPlusExpression(UnaryPlusExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitUnaryPlusExpression(UnaryPlusExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterDeleteExpression(DeleteExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitDeleteExpression(DeleteExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterImportExpression(ImportExpressionContext ctx) {
+        jplagParser.add(IMPORT, ctx.getStart());
+        
+        
+    }
+
+    @Override
+    public void exitImportExpression(ImportExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterEqualityExpression(EqualityExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitEqualityExpression(EqualityExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterBitXOrExpression(BitXOrExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitBitXOrExpression(BitXOrExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterSuperExpression(SuperExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitSuperExpression(SuperExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterMultiplicativeExpression(MultiplicativeExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitMultiplicativeExpression(MultiplicativeExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterBitShiftExpression(BitShiftExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitBitShiftExpression(BitShiftExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterParenthesizedExpression(ParenthesizedExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitParenthesizedExpression(ParenthesizedExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterAdditiveExpression(AdditiveExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitAdditiveExpression(AdditiveExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterRelationalExpression(RelationalExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitRelationalExpression(RelationalExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterPostIncrementExpression(PostIncrementExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitPostIncrementExpression(PostIncrementExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterYieldExpression(YieldExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitYieldExpression(YieldExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterBitNotExpression(BitNotExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitBitNotExpression(BitNotExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterNewExpression(NewExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitNewExpression(NewExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterLiteralExpression(LiteralExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitLiteralExpression(LiteralExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArrayLiteralExpression(ArrayLiteralExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArrayLiteralExpression(ArrayLiteralExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterMemberDotExpression(MemberDotExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitMemberDotExpression(MemberDotExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterClassExpression(ClassExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitClassExpression(ClassExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterMemberIndexExpression(MemberIndexExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitMemberIndexExpression(MemberIndexExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterIdentifierExpression(IdentifierExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitIdentifierExpression(IdentifierExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterBitAndExpression(BitAndExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitBitAndExpression(BitAndExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterBitOrExpression(BitOrExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitBitOrExpression(BitOrExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterAssignmentOperatorExpression(AssignmentOperatorExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitAssignmentOperatorExpression(AssignmentOperatorExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterVoidExpression(VoidExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitVoidExpression(VoidExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterCoalesceExpression(CoalesceExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitCoalesceExpression(CoalesceExpressionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterAssignable(AssignableContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitAssignable(AssignableContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterObjectLiteral(ObjectLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitObjectLiteral(ObjectLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterFunctionDecl(FunctionDeclContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitFunctionDecl(FunctionDeclContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterAnonymousFunctionDecl(AnonymousFunctionDeclContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitAnonymousFunctionDecl(AnonymousFunctionDeclContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArrowFunction(ArrowFunctionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArrowFunction(ArrowFunctionContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArrowFunctionParameters(ArrowFunctionParametersContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArrowFunctionParameters(ArrowFunctionParametersContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterArrowFunctionBody(ArrowFunctionBodyContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitArrowFunctionBody(ArrowFunctionBodyContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterAssignmentOperator(AssignmentOperatorContext ctx) {
+        jplagParser.add(ASSIGN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitAssignmentOperator(AssignmentOperatorContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterLiteral(LiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitLiteral(LiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterTemplateStringLiteral(TemplateStringLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitTemplateStringLiteral(TemplateStringLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterTemplateStringAtom(TemplateStringAtomContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitTemplateStringAtom(TemplateStringAtomContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterNumericLiteral(NumericLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitNumericLiteral(NumericLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterBigintLiteral(BigintLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitBigintLiteral(BigintLiteralContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterGetter(GetterContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitGetter(GetterContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterSetter(SetterContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitSetter(SetterContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterIdentifierName(IdentifierNameContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitIdentifierName(IdentifierNameContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterIdentifier(IdentifierContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitIdentifier(IdentifierContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterReservedWord(ReservedWordContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitReservedWord(ReservedWordContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterKeyword(KeywordContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitKeyword(KeywordContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterLet_(Let_Context ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitLet_(Let_Context ctx) {
+        
+        
+    }
+
+    @Override
+    public void enterEos(EosContext ctx) {
+        
+        
+    }
+
+    @Override
+    public void exitEos(EosContext ctx) {
+        
+        
     }
 
     @Override

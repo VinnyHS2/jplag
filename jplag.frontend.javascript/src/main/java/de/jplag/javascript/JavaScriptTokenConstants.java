@@ -2,7 +2,7 @@ package de.jplag.javascript;
 
 import de.jplag.TokenConstants;
 
-public interface ECMAScriptTokenConstants extends TokenConstants {
+public interface JavaScriptTokenConstants extends TokenConstants {
 
     final static int FILE_END = 0;
     final static int SEPARATOR_TOKEN = 1;
@@ -37,6 +37,16 @@ public interface ECMAScriptTokenConstants extends TokenConstants {
     final static int DEL = 30;
     final static int WITH_BEGIN = 31;
     final static int WITH_END = 32;
+    final static int DO_BEGIN = 33;
+    final static int DO_END = 34;
+    final static int THROW_BEGIN = 35;
+    final static int THROW_END = 36;
+    final static int FUNCTION_BEGIN = 37;
+    final static int FUNCTION_END = 38;
+    final static int SWITH_BEGIN = 39;
+    final static int SWITH_END = 40;
 
-    final static int NUM_DIFF_TOKENS = 33;
+    final static int NUM_DIFF_TOKENS = 41;
+
+
 }
