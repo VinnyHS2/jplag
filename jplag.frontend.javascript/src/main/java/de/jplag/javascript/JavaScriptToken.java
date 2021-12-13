@@ -89,14 +89,8 @@ public class JavaScriptToken extends Token implements JavaScriptTokenConstants {
                 return "CONTINUE";
             case RETURN:
                 return "RETURN  ";
-            case RAISE:
-                return "RAISE   ";
-            case DEC_BEGIN:
-                return "DECOR{  ";
-            case DEC_END:
-                return "}DECOR  ";
-            case LAMBDA:
-                return "LAMBDA  ";
+            case EXPORT:
+                return "EXPORT  ";
             case ARRAY:
                 return "ARRAY   ";
             case ASSERT:

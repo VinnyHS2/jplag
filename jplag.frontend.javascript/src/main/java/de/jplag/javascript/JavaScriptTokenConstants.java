@@ -46,8 +46,9 @@ public interface JavaScriptTokenConstants extends TokenConstants {
     final static int SWITH_BEGIN = 39;
     final static int SWITH_END = 40;
     final static int DEFAULT = 41;
+    final static int EXPORT = 42;
 
-    final static int NUM_DIFF_TOKENS = 42;
+    final static int NUM_DIFF_TOKENS = 43;
 
 
 }

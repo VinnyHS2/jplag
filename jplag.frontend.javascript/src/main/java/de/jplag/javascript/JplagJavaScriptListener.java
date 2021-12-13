@@ -4,9 +4,8 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import de.jplag.javascript.grammar.JavaScriptParserListener;
 import de.jplag.javascript.grammar.JavaScriptParser;
-import de.jplag.javascript.grammar.JavaScriptParser.*;
+import de.jplag.javascript.grammar.JavaScriptParserListener;
 
 public class JplagJavaScriptListener implements JavaScriptParserListener, JavaScriptTokenConstants {
 
@@ -35,669 +34,669 @@ public class JplagJavaScriptListener implements JavaScriptParserListener, JavaSc
     }
 
     @Override
-    public void enterProgram(ProgramContext ctx) {
+    public void enterProgram(JavaScriptParser.ProgramContext ctx) {
         
         
     }
 
     @Override
-    public void exitProgram(ProgramContext ctx) {
+    public void exitProgram(JavaScriptParser.ProgramContext ctx) {
         
         
     }
 
     @Override
-    public void enterSourceElement(SourceElementContext ctx) {
+    public void enterSourceElement(JavaScriptParser.SourceElementContext ctx) {
         
         
     }
 
     @Override
-    public void exitSourceElement(SourceElementContext ctx) {
+    public void exitSourceElement(JavaScriptParser.SourceElementContext ctx) {
         
         
     }
 
     @Override
-    public void enterStatement(StatementContext ctx) {
+    public void enterStatement(JavaScriptParser.StatementContext ctx) {
         
         
     }
 
     @Override
-    public void exitStatement(StatementContext ctx) {
+    public void exitStatement(JavaScriptParser.StatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterBlock(BlockContext ctx) {
+    public void enterBlock(JavaScriptParser.BlockContext ctx) {
         
         
     }
 
     @Override
-    public void exitBlock(BlockContext ctx) {
+    public void exitBlock(JavaScriptParser.BlockContext ctx) {
         
         
     }
 
     @Override
-    public void enterStatementList(StatementListContext ctx) {
+    public void enterStatementList(JavaScriptParser.StatementListContext ctx) {
         
         
     }
 
     @Override
-    public void exitStatementList(StatementListContext ctx) {
+    public void exitStatementList(JavaScriptParser.StatementListContext ctx) {
         
         
     }
 
     @Override
-    public void enterImportStatement(ImportStatementContext ctx) {
+    public void enterImportStatement(JavaScriptParser.ImportStatementContext ctx) {
         jplagParser.add(IMPORT, ctx.getStart());
         
         
     }
 
     @Override
-    public void exitImportStatement(ImportStatementContext ctx) {
+    public void exitImportStatement(JavaScriptParser.ImportStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterImportFromBlock(ImportFromBlockContext ctx) {
+    public void enterImportFromBlock(JavaScriptParser.ImportFromBlockContext ctx) {
+        jplagParser.add(IMPORT, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitImportFromBlock(JavaScriptParser.ImportFromBlockContext ctx) {
         
         
     }
 
     @Override
-    public void exitImportFromBlock(ImportFromBlockContext ctx) {
+    public void enterModuleItems(JavaScriptParser.ModuleItemsContext ctx) {
         
         
     }
 
     @Override
-    public void enterModuleItems(ModuleItemsContext ctx) {
+    public void exitModuleItems(JavaScriptParser.ModuleItemsContext ctx) {
         
         
     }
 
     @Override
-    public void exitModuleItems(ModuleItemsContext ctx) {
+    public void enterImportDefault(JavaScriptParser.ImportDefaultContext ctx) {
+        jplagParser.add(IMPORT, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitImportDefault(JavaScriptParser.ImportDefaultContext ctx) {
         
         
     }
 
     @Override
-    public void enterImportDefault(ImportDefaultContext ctx) {
+    public void enterImportNamespace(JavaScriptParser.ImportNamespaceContext ctx) {
+        jplagParser.add(IMPORT, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitImportNamespace(JavaScriptParser.ImportNamespaceContext ctx) {
         
         
     }
 
     @Override
-    public void exitImportDefault(ImportDefaultContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void enterImportNamespace(ImportNamespaceContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void exitImportNamespace(ImportNamespaceContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void enterImportFrom(ImportFromContext ctx) {
+    public void enterImportFrom(JavaScriptParser.ImportFromContext ctx) {
         jplagParser.add(IMPORT, ctx.getStart());
         
         
     }
 
     @Override
-    public void exitImportFrom(ImportFromContext ctx) {
+    public void exitImportFrom(JavaScriptParser.ImportFromContext ctx) {
         
         
     }
 
     @Override
-    public void enterAliasName(AliasNameContext ctx) {
+    public void enterAliasName(JavaScriptParser.AliasNameContext ctx) {
         
         
     }
 
     @Override
-    public void exitAliasName(AliasNameContext ctx) {
+    public void exitAliasName(JavaScriptParser.AliasNameContext ctx) {
         
         
     }
 
     @Override
-    public void enterExportDeclaration(ExportDeclarationContext ctx) {
+    public void enterExportDeclaration(JavaScriptParser.ExportDeclarationContext ctx) {
+        jplagParser.add(EXPORT, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitExportDeclaration(JavaScriptParser.ExportDeclarationContext ctx) {
         
         
     }
 
     @Override
-    public void exitExportDeclaration(ExportDeclarationContext ctx) {
+    public void enterExportDefaultDeclaration(JavaScriptParser.ExportDefaultDeclarationContext ctx) {
+        jplagParser.add(EXPORT, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitExportDefaultDeclaration(JavaScriptParser.ExportDefaultDeclarationContext ctx) {
         
         
     }
 
     @Override
-    public void enterExportDefaultDeclaration(ExportDefaultDeclarationContext ctx) {
+    public void enterExportFromBlock(JavaScriptParser.ExportFromBlockContext ctx) {
         
         
     }
 
     @Override
-    public void exitExportDefaultDeclaration(ExportDefaultDeclarationContext ctx) {
+    public void exitExportFromBlock(JavaScriptParser.ExportFromBlockContext ctx) {
         
         
     }
 
     @Override
-    public void enterExportFromBlock(ExportFromBlockContext ctx) {
+    public void enterDeclaration(JavaScriptParser.DeclarationContext ctx) {
         
         
     }
 
     @Override
-    public void exitExportFromBlock(ExportFromBlockContext ctx) {
+    public void exitDeclaration(JavaScriptParser.DeclarationContext ctx) {
         
         
     }
 
     @Override
-    public void enterDeclaration(DeclarationContext ctx) {
+    public void enterVariableStatement(JavaScriptParser.VariableStatementContext ctx) {
         
         
     }
 
     @Override
-    public void exitDeclaration(DeclarationContext ctx) {
+    public void exitVariableStatement(JavaScriptParser.VariableStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterVariableStatement(VariableStatementContext ctx) {
+    public void enterVariableDeclarationList(JavaScriptParser.VariableDeclarationListContext ctx) {
         
         
     }
 
     @Override
-    public void exitVariableStatement(VariableStatementContext ctx) {
+    public void exitVariableDeclarationList(JavaScriptParser.VariableDeclarationListContext ctx) {
         
         
     }
 
     @Override
-    public void enterVariableDeclarationList(VariableDeclarationListContext ctx) {
+    public void enterVariableDeclaration(JavaScriptParser.VariableDeclarationContext ctx) {
         
         
     }
 
     @Override
-    public void exitVariableDeclarationList(VariableDeclarationListContext ctx) {
+    public void exitVariableDeclaration(JavaScriptParser.VariableDeclarationContext ctx) {
         
         
     }
 
     @Override
-    public void enterVariableDeclaration(VariableDeclarationContext ctx) {
+    public void enterEmptyStatement(JavaScriptParser.EmptyStatementContext ctx) {
         
         
     }
 
     @Override
-    public void exitVariableDeclaration(VariableDeclarationContext ctx) {
+    public void exitEmptyStatement(JavaScriptParser.EmptyStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterEmptyStatement(EmptyStatementContext ctx) {
+    public void enterExpressionStatement(JavaScriptParser.ExpressionStatementContext ctx) {
         
         
     }
 
     @Override
-    public void exitEmptyStatement(EmptyStatementContext ctx) {
+    public void exitExpressionStatement(JavaScriptParser.ExpressionStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterExpressionStatement(ExpressionStatementContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void exitExpressionStatement(ExpressionStatementContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void enterIfStatement(IfStatementContext ctx) {
+    public void enterIfStatement(JavaScriptParser.IfStatementContext ctx) {
         jplagParser.add(IF_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitIfStatement(IfStatementContext ctx) {
+    public void exitIfStatement(JavaScriptParser.IfStatementContext ctx) {
         jplagParser.addEnd(IF_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterDoStatement(DoStatementContext ctx) {
+    public void enterDoStatement(JavaScriptParser.DoStatementContext ctx) {
         jplagParser.addEnd(DO_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitDoStatement(DoStatementContext ctx) {
+    public void exitDoStatement(JavaScriptParser.DoStatementContext ctx) {
         jplagParser.addEnd(DO_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterWhileStatement(WhileStatementContext ctx) {
+    public void enterWhileStatement(JavaScriptParser.WhileStatementContext ctx) {
         jplagParser.add(WHILE_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitWhileStatement(WhileStatementContext ctx) {
+    public void exitWhileStatement(JavaScriptParser.WhileStatementContext ctx) {
         jplagParser.addEnd(WHILE_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterForStatement(ForStatementContext ctx) {
+    public void enterForStatement(JavaScriptParser.ForStatementContext ctx) {
         jplagParser.add(FOR_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitForStatement(ForStatementContext ctx) {
+    public void exitForStatement(JavaScriptParser.ForStatementContext ctx) {
         jplagParser.addEnd(FOR_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterForInStatement(ForInStatementContext ctx) {
+    public void enterForInStatement(JavaScriptParser.ForInStatementContext ctx) {
         
         
     }
 
     @Override
-    public void exitForInStatement(ForInStatementContext ctx) {
+    public void exitForInStatement(JavaScriptParser.ForInStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterForOfStatement(ForOfStatementContext ctx) {
+    public void enterForOfStatement(JavaScriptParser.ForOfStatementContext ctx) {
         
         
     }
 
     @Override
-    public void exitForOfStatement(ForOfStatementContext ctx) {
+    public void exitForOfStatement(JavaScriptParser.ForOfStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterVarModifier(VarModifierContext ctx) {
+    public void enterVarModifier(JavaScriptParser.VarModifierContext ctx) {
         
         
     }
 
     @Override
-    public void exitVarModifier(VarModifierContext ctx) {
+    public void exitVarModifier(JavaScriptParser.VarModifierContext ctx) {
         
         
     }
 
     @Override
-    public void enterContinueStatement(ContinueStatementContext ctx) {
+    public void enterContinueStatement(JavaScriptParser.ContinueStatementContext ctx) {
         jplagParser.add(CONTINUE, ctx.getStart());
         
     }
 
     @Override
-    public void exitContinueStatement(ContinueStatementContext ctx) {
+    public void exitContinueStatement(JavaScriptParser.ContinueStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterBreakStatement(BreakStatementContext ctx) {
+    public void enterBreakStatement(JavaScriptParser.BreakStatementContext ctx) {
         jplagParser.add(BREAK, ctx.getStart());
         
     }
 
     @Override
-    public void exitBreakStatement(BreakStatementContext ctx) {
+    public void exitBreakStatement(JavaScriptParser.BreakStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterReturnStatement(ReturnStatementContext ctx) {
+    public void enterReturnStatement(JavaScriptParser.ReturnStatementContext ctx) {
         jplagParser.add(RETURN, ctx.getStart());
         
     }
 
     @Override
-    public void exitReturnStatement(ReturnStatementContext ctx) {
+    public void exitReturnStatement(JavaScriptParser.ReturnStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterYieldStatement(YieldStatementContext ctx) {
+    public void enterYieldStatement(JavaScriptParser.YieldStatementContext ctx) {
         jplagParser.add(YIELD, ctx.getStart());
         
     }
 
     @Override
-    public void exitYieldStatement(YieldStatementContext ctx) {
+    public void exitYieldStatement(JavaScriptParser.YieldStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterWithStatement(WithStatementContext ctx) {
+    public void enterWithStatement(JavaScriptParser.WithStatementContext ctx) {
         jplagParser.add(WITH_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitWithStatement(WithStatementContext ctx) {
+    public void exitWithStatement(JavaScriptParser.WithStatementContext ctx) {
         jplagParser.addEnd(WITH_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterSwitchStatement(SwitchStatementContext ctx) {
+    public void enterSwitchStatement(JavaScriptParser.SwitchStatementContext ctx) {
         jplagParser.addEnd(SWITH_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitSwitchStatement(SwitchStatementContext ctx) {
+    public void exitSwitchStatement(JavaScriptParser.SwitchStatementContext ctx) {
         jplagParser.addEnd(SWITH_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterCaseBlock(CaseBlockContext ctx) {
+    public void enterCaseBlock(JavaScriptParser.CaseBlockContext ctx) {
         
         
     }
 
     @Override
-    public void exitCaseBlock(CaseBlockContext ctx) {
+    public void exitCaseBlock(JavaScriptParser.CaseBlockContext ctx) {
         
         
     }
 
     @Override
-    public void enterCaseClauses(CaseClausesContext ctx) {
+    public void enterCaseClauses(JavaScriptParser.CaseClausesContext ctx) {
         
         
     }
 
     @Override
-    public void exitCaseClauses(CaseClausesContext ctx) {
+    public void exitCaseClauses(JavaScriptParser.CaseClausesContext ctx) {
         
         
     }
 
     @Override
-    public void enterCaseClause(CaseClauseContext ctx) {
+    public void enterCaseClause(JavaScriptParser.CaseClauseContext ctx) {
         
         
     }
 
     @Override
-    public void exitCaseClause(CaseClauseContext ctx) {
+    public void exitCaseClause(JavaScriptParser.CaseClauseContext ctx) {
         
         
     }
 
     @Override
-    public void enterDefaultClause(DefaultClauseContext ctx) {
+    public void enterDefaultClause(JavaScriptParser.DefaultClauseContext ctx) {
         jplagParser.add(DEFAULT, ctx.getStart());
         
     }
 
     @Override
-    public void exitDefaultClause(DefaultClauseContext ctx) {
+    public void exitDefaultClause(JavaScriptParser.DefaultClauseContext ctx) {
         
         
     }
 
     @Override
-    public void enterLabelledStatement(LabelledStatementContext ctx) {
+    public void enterLabelledStatement(JavaScriptParser.LabelledStatementContext ctx) {
         
         
     }
 
     @Override
-    public void exitLabelledStatement(LabelledStatementContext ctx) {
+    public void exitLabelledStatement(JavaScriptParser.LabelledStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterThrowStatement(ThrowStatementContext ctx) {
+    public void enterThrowStatement(JavaScriptParser.ThrowStatementContext ctx) {
         jplagParser.addEnd(THROW_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitThrowStatement(ThrowStatementContext ctx) {
+    public void exitThrowStatement(JavaScriptParser.ThrowStatementContext ctx) {
         jplagParser.addEnd(THROW_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterTryStatement(TryStatementContext ctx) {
+    public void enterTryStatement(JavaScriptParser.TryStatementContext ctx) {
         jplagParser.add(TRY_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitTryStatement(TryStatementContext ctx) {
+    public void exitTryStatement(JavaScriptParser.TryStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterCatchProduction(CatchProductionContext ctx) {
+    public void enterCatchProduction(JavaScriptParser.CatchProductionContext ctx) {
         
         
     }
 
     @Override
-    public void exitCatchProduction(CatchProductionContext ctx) {
+    public void exitCatchProduction(JavaScriptParser.CatchProductionContext ctx) {
         
         
     }
 
     @Override
-    public void enterFinallyProduction(FinallyProductionContext ctx) {
+    public void enterFinallyProduction(JavaScriptParser.FinallyProductionContext ctx) {
         
         
     }
 
     @Override
-    public void exitFinallyProduction(FinallyProductionContext ctx) {
+    public void exitFinallyProduction(JavaScriptParser.FinallyProductionContext ctx) {
         
         
     }
 
     @Override
-    public void enterDebuggerStatement(DebuggerStatementContext ctx) {
+    public void enterDebuggerStatement(JavaScriptParser.DebuggerStatementContext ctx) {
         
         
     }
 
     @Override
-    public void exitDebuggerStatement(DebuggerStatementContext ctx) {
+    public void exitDebuggerStatement(JavaScriptParser.DebuggerStatementContext ctx) {
         
         
     }
 
     @Override
-    public void enterFunctionDeclaration(FunctionDeclarationContext ctx) {
+    public void enterFunctionDeclaration(JavaScriptParser.FunctionDeclarationContext ctx) {
         jplagParser.add(FUNCTION_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitFunctionDeclaration(FunctionDeclarationContext ctx) {
+    public void exitFunctionDeclaration(JavaScriptParser.FunctionDeclarationContext ctx) {
         jplagParser.add(FUNCTION_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterClassDeclaration(ClassDeclarationContext ctx) {
+    public void enterClassDeclaration(JavaScriptParser.ClassDeclarationContext ctx) {
         jplagParser.add(CLASS_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitClassDeclaration(ClassDeclarationContext ctx) {
+    public void exitClassDeclaration(JavaScriptParser.ClassDeclarationContext ctx) {
         jplagParser.addEnd(CLASS_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterClassTail(ClassTailContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void exitClassTail(ClassTailContext ctx) {
-        
+    public void enterClassTail(JavaScriptParser.ClassTailContext ctx) {
+        jplagParser.add(CLASS_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void enterClassElement(ClassElementContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void exitClassElement(ClassElementContext ctx) {
-        
+    public void exitClassTail(JavaScriptParser.ClassTailContext ctx) {
+        jplagParser.addEnd(CLASS_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterMethodDefinition(MethodDefinitionContext ctx) {
+    public void enterClassElement(JavaScriptParser.ClassElementContext ctx) {
+        jplagParser.add(CLASS_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitClassElement(JavaScriptParser.ClassElementContext ctx) {
+        jplagParser.addEnd(CLASS_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterMethodDefinition(JavaScriptParser.MethodDefinitionContext ctx) {
         jplagParser.add(METHOD_BEGIN, ctx.getStart());
         
     }
 
     @Override
-    public void exitMethodDefinition(MethodDefinitionContext ctx) {
+    public void exitMethodDefinition(JavaScriptParser.MethodDefinitionContext ctx) {
         jplagParser.addEnd(METHOD_END, ctx.getStart());
         
     }
 
     @Override
-    public void enterFormalParameterList(FormalParameterListContext ctx) {
+    public void enterFormalParameterList(JavaScriptParser.FormalParameterListContext ctx) {
         
         
     }
 
     @Override
-    public void exitFormalParameterList(FormalParameterListContext ctx) {
+    public void exitFormalParameterList(JavaScriptParser.FormalParameterListContext ctx) {
         
         
     }
 
     @Override
-    public void enterFormalParameterArg(FormalParameterArgContext ctx) {
+    public void enterFormalParameterArg(JavaScriptParser.FormalParameterArgContext ctx) {
         
         
     }
 
     @Override
-    public void exitFormalParameterArg(FormalParameterArgContext ctx) {
+    public void exitFormalParameterArg(JavaScriptParser.FormalParameterArgContext ctx) {
         
         
     }
 
     @Override
-    public void enterLastFormalParameterArg(LastFormalParameterArgContext ctx) {
+    public void enterLastFormalParameterArg(JavaScriptParser.LastFormalParameterArgContext ctx) {
         
         
     }
 
     @Override
-    public void exitLastFormalParameterArg(LastFormalParameterArgContext ctx) {
+    public void exitLastFormalParameterArg(JavaScriptParser.LastFormalParameterArgContext ctx) {
         
         
     }
 
     @Override
-    public void enterFunctionBody(FunctionBodyContext ctx) {
+    public void enterFunctionBody(JavaScriptParser.FunctionBodyContext ctx) {
         
         
     }
 
     @Override
-    public void exitFunctionBody(FunctionBodyContext ctx) {
+    public void exitFunctionBody(JavaScriptParser.FunctionBodyContext ctx) {
         
         
     }
 
     @Override
-    public void enterSourceElements(SourceElementsContext ctx) {
+    public void enterSourceElements(JavaScriptParser.SourceElementsContext ctx) {
         
         
     }
 
     @Override
-    public void exitSourceElements(SourceElementsContext ctx) {
+    public void exitSourceElements(JavaScriptParser.SourceElementsContext ctx) {
         
         
     }
 
     @Override
-    public void enterArrayLiteral(ArrayLiteralContext ctx) {
+    public void enterArrayLiteral(JavaScriptParser.ArrayLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void exitArrayLiteral(ArrayLiteralContext ctx) {
+    public void exitArrayLiteral(JavaScriptParser.ArrayLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void enterElementList(ElementListContext ctx) {
+    public void enterElementList(JavaScriptParser.ElementListContext ctx) {
         if (ctx.getText().contains(",")) {
             jplagParser.add(ARRAY, ctx.getStart());
         }
@@ -705,944 +704,944 @@ public class JplagJavaScriptListener implements JavaScriptParserListener, JavaSc
     }
 
     @Override
-    public void exitElementList(ElementListContext ctx) {
+    public void exitElementList(JavaScriptParser.ElementListContext ctx) {
         
         
     }
 
     @Override
-    public void enterArrayElement(ArrayElementContext ctx) {
+    public void enterArrayElement(JavaScriptParser.ArrayElementContext ctx) {
         
         
     }
 
     @Override
-    public void exitArrayElement(ArrayElementContext ctx) {
+    public void exitArrayElement(JavaScriptParser.ArrayElementContext ctx) {
         
         
     }
 
     @Override
-    public void enterPropertyExpressionAssignment(PropertyExpressionAssignmentContext ctx) {
+    public void enterPropertyExpressionAssignment(JavaScriptParser.PropertyExpressionAssignmentContext ctx) {
         
         
     }
 
     @Override
-    public void exitPropertyExpressionAssignment(PropertyExpressionAssignmentContext ctx) {
+    public void exitPropertyExpressionAssignment(JavaScriptParser.PropertyExpressionAssignmentContext ctx) {
         
         
     }
 
     @Override
-    public void enterComputedPropertyExpressionAssignment(ComputedPropertyExpressionAssignmentContext ctx) {
+    public void enterComputedPropertyExpressionAssignment(JavaScriptParser.ComputedPropertyExpressionAssignmentContext ctx) {
         
         
     }
 
     @Override
-    public void exitComputedPropertyExpressionAssignment(ComputedPropertyExpressionAssignmentContext ctx) {
+    public void exitComputedPropertyExpressionAssignment(JavaScriptParser.ComputedPropertyExpressionAssignmentContext ctx) {
         
         
     }
 
     @Override
-    public void enterFunctionProperty(FunctionPropertyContext ctx) {
+    public void enterFunctionProperty(JavaScriptParser.FunctionPropertyContext ctx) {
         
         
     }
 
     @Override
-    public void exitFunctionProperty(FunctionPropertyContext ctx) {
+    public void exitFunctionProperty(JavaScriptParser.FunctionPropertyContext ctx) {
         
         
     }
 
     @Override
-    public void enterPropertyGetter(PropertyGetterContext ctx) {
+    public void enterPropertyGetter(JavaScriptParser.PropertyGetterContext ctx) {
         
         
     }
 
     @Override
-    public void exitPropertyGetter(PropertyGetterContext ctx) {
+    public void exitPropertyGetter(JavaScriptParser.PropertyGetterContext ctx) {
         
         
     }
 
     @Override
-    public void enterPropertySetter(PropertySetterContext ctx) {
+    public void enterPropertySetter(JavaScriptParser.PropertySetterContext ctx) {
         
         
     }
 
     @Override
-    public void exitPropertySetter(PropertySetterContext ctx) {
+    public void exitPropertySetter(JavaScriptParser.PropertySetterContext ctx) {
         
         
     }
 
     @Override
-    public void enterPropertyShorthand(PropertyShorthandContext ctx) {
+    public void enterPropertyShorthand(JavaScriptParser.PropertyShorthandContext ctx) {
         
         
     }
 
     @Override
-    public void exitPropertyShorthand(PropertyShorthandContext ctx) {
+    public void exitPropertyShorthand(JavaScriptParser.PropertyShorthandContext ctx) {
         
         
     }
 
     @Override
-    public void enterPropertyName(PropertyNameContext ctx) {
+    public void enterPropertyName(JavaScriptParser.PropertyNameContext ctx) {
         
         
     }
 
     @Override
-    public void exitPropertyName(PropertyNameContext ctx) {
+    public void exitPropertyName(JavaScriptParser.PropertyNameContext ctx) {
         
         
     }
 
     @Override
-    public void enterArguments(ArgumentsContext ctx) {
+    public void enterArguments(JavaScriptParser.ArgumentsContext ctx) {
         
         
     }
 
     @Override
-    public void exitArguments(ArgumentsContext ctx) {
+    public void exitArguments(JavaScriptParser.ArgumentsContext ctx) {
         
         
     }
 
     @Override
-    public void enterArgument(ArgumentContext ctx) {
+    public void enterArgument(JavaScriptParser.ArgumentContext ctx) {
         
         
     }
 
     @Override
-    public void exitArgument(ArgumentContext ctx) {
+    public void exitArgument(JavaScriptParser.ArgumentContext ctx) {
         
         
     }
 
     @Override
-    public void enterExpressionSequence(ExpressionSequenceContext ctx) {
+    public void enterExpressionSequence(JavaScriptParser.ExpressionSequenceContext ctx) {
         
         
     }
 
     @Override
-    public void exitExpressionSequence(ExpressionSequenceContext ctx) {
+    public void exitExpressionSequence(JavaScriptParser.ExpressionSequenceContext ctx) {
         
         
     }
 
     @Override
-    public void enterTemplateStringExpression(TemplateStringExpressionContext ctx) {
+    public void enterTemplateStringExpression(JavaScriptParser.TemplateStringExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitTemplateStringExpression(TemplateStringExpressionContext ctx) {
+    public void exitTemplateStringExpression(JavaScriptParser.TemplateStringExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterTernaryExpression(TernaryExpressionContext ctx) {
+    public void enterTernaryExpression(JavaScriptParser.TernaryExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitTernaryExpression(TernaryExpressionContext ctx) {
+    public void exitTernaryExpression(JavaScriptParser.TernaryExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterLogicalAndExpression(LogicalAndExpressionContext ctx) {
+    public void enterLogicalAndExpression(JavaScriptParser.LogicalAndExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitLogicalAndExpression(LogicalAndExpressionContext ctx) {
+    public void exitLogicalAndExpression(JavaScriptParser.LogicalAndExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterPowerExpression(PowerExpressionContext ctx) {
+    public void enterPowerExpression(JavaScriptParser.PowerExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitPowerExpression(PowerExpressionContext ctx) {
+    public void exitPowerExpression(JavaScriptParser.PowerExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterPreIncrementExpression(PreIncrementExpressionContext ctx) {
+    public void enterPreIncrementExpression(JavaScriptParser.PreIncrementExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitPreIncrementExpression(PreIncrementExpressionContext ctx) {
+    public void exitPreIncrementExpression(JavaScriptParser.PreIncrementExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterObjectLiteralExpression(ObjectLiteralExpressionContext ctx) {
+    public void enterObjectLiteralExpression(JavaScriptParser.ObjectLiteralExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitObjectLiteralExpression(ObjectLiteralExpressionContext ctx) {
+    public void exitObjectLiteralExpression(JavaScriptParser.ObjectLiteralExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterMetaExpression(MetaExpressionContext ctx) {
+    public void enterMetaExpression(JavaScriptParser.MetaExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitMetaExpression(MetaExpressionContext ctx) {
+    public void exitMetaExpression(JavaScriptParser.MetaExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterInExpression(InExpressionContext ctx) {
+    public void enterInExpression(JavaScriptParser.InExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitInExpression(InExpressionContext ctx) {
+    public void exitInExpression(JavaScriptParser.InExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterLogicalOrExpression(LogicalOrExpressionContext ctx) {
+    public void enterLogicalOrExpression(JavaScriptParser.LogicalOrExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitLogicalOrExpression(LogicalOrExpressionContext ctx) {
+    public void exitLogicalOrExpression(JavaScriptParser.LogicalOrExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterNotExpression(NotExpressionContext ctx) {
+    public void enterNotExpression(JavaScriptParser.NotExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitNotExpression(NotExpressionContext ctx) {
+    public void exitNotExpression(JavaScriptParser.NotExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterPreDecreaseExpression(PreDecreaseExpressionContext ctx) {
+    public void enterPreDecreaseExpression(JavaScriptParser.PreDecreaseExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitPreDecreaseExpression(PreDecreaseExpressionContext ctx) {
+    public void exitPreDecreaseExpression(JavaScriptParser.PreDecreaseExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterArgumentsExpression(ArgumentsExpressionContext ctx) {
+    public void enterArgumentsExpression(JavaScriptParser.ArgumentsExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitArgumentsExpression(ArgumentsExpressionContext ctx) {
+    public void exitArgumentsExpression(JavaScriptParser.ArgumentsExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterAwaitExpression(AwaitExpressionContext ctx) {
+    public void enterAwaitExpression(JavaScriptParser.AwaitExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitAwaitExpression(AwaitExpressionContext ctx) {
+    public void exitAwaitExpression(JavaScriptParser.AwaitExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterThisExpression(ThisExpressionContext ctx) {
+    public void enterThisExpression(JavaScriptParser.ThisExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitThisExpression(ThisExpressionContext ctx) {
+    public void exitThisExpression(JavaScriptParser.ThisExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterFunctionExpression(FunctionExpressionContext ctx) {
+    public void enterFunctionExpression(JavaScriptParser.FunctionExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitFunctionExpression(FunctionExpressionContext ctx) {
+    public void exitFunctionExpression(JavaScriptParser.FunctionExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterUnaryMinusExpression(UnaryMinusExpressionContext ctx) {
+    public void enterUnaryMinusExpression(JavaScriptParser.UnaryMinusExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitUnaryMinusExpression(UnaryMinusExpressionContext ctx) {
+    public void exitUnaryMinusExpression(JavaScriptParser.UnaryMinusExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterAssignmentExpression(AssignmentExpressionContext ctx) {
+    public void enterAssignmentExpression(JavaScriptParser.AssignmentExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitAssignmentExpression(AssignmentExpressionContext ctx) {
+    public void exitAssignmentExpression(JavaScriptParser.AssignmentExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterPostDecreaseExpression(PostDecreaseExpressionContext ctx) {
+    public void enterPostDecreaseExpression(JavaScriptParser.PostDecreaseExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitPostDecreaseExpression(PostDecreaseExpressionContext ctx) {
+    public void exitPostDecreaseExpression(JavaScriptParser.PostDecreaseExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterTypeofExpression(TypeofExpressionContext ctx) {
+    public void enterTypeofExpression(JavaScriptParser.TypeofExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitTypeofExpression(TypeofExpressionContext ctx) {
+    public void exitTypeofExpression(JavaScriptParser.TypeofExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterInstanceofExpression(InstanceofExpressionContext ctx) {
+    public void enterInstanceofExpression(JavaScriptParser.InstanceofExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitInstanceofExpression(InstanceofExpressionContext ctx) {
+    public void exitInstanceofExpression(JavaScriptParser.InstanceofExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterUnaryPlusExpression(UnaryPlusExpressionContext ctx) {
+    public void enterUnaryPlusExpression(JavaScriptParser.UnaryPlusExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitUnaryPlusExpression(UnaryPlusExpressionContext ctx) {
+    public void exitUnaryPlusExpression(JavaScriptParser.UnaryPlusExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterDeleteExpression(DeleteExpressionContext ctx) {
+    public void enterDeleteExpression(JavaScriptParser.DeleteExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitDeleteExpression(DeleteExpressionContext ctx) {
+    public void exitDeleteExpression(JavaScriptParser.DeleteExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterImportExpression(ImportExpressionContext ctx) {
+    public void enterImportExpression(JavaScriptParser.ImportExpressionContext ctx) {
         jplagParser.add(IMPORT, ctx.getStart());
         
         
     }
 
     @Override
-    public void exitImportExpression(ImportExpressionContext ctx) {
+    public void exitImportExpression(JavaScriptParser.ImportExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterEqualityExpression(EqualityExpressionContext ctx) {
+    public void enterEqualityExpression(JavaScriptParser.EqualityExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitEqualityExpression(EqualityExpressionContext ctx) {
+    public void exitEqualityExpression(JavaScriptParser.EqualityExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterBitXOrExpression(BitXOrExpressionContext ctx) {
+    public void enterBitXOrExpression(JavaScriptParser.BitXOrExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitBitXOrExpression(BitXOrExpressionContext ctx) {
+    public void exitBitXOrExpression(JavaScriptParser.BitXOrExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterSuperExpression(SuperExpressionContext ctx) {
+    public void enterSuperExpression(JavaScriptParser.SuperExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitSuperExpression(SuperExpressionContext ctx) {
+    public void exitSuperExpression(JavaScriptParser.SuperExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterMultiplicativeExpression(MultiplicativeExpressionContext ctx) {
+    public void enterMultiplicativeExpression(JavaScriptParser.MultiplicativeExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitMultiplicativeExpression(MultiplicativeExpressionContext ctx) {
+    public void exitMultiplicativeExpression(JavaScriptParser.MultiplicativeExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterBitShiftExpression(BitShiftExpressionContext ctx) {
+    public void enterBitShiftExpression(JavaScriptParser.BitShiftExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitBitShiftExpression(BitShiftExpressionContext ctx) {
+    public void exitBitShiftExpression(JavaScriptParser.BitShiftExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterParenthesizedExpression(ParenthesizedExpressionContext ctx) {
+    public void enterParenthesizedExpression(JavaScriptParser.ParenthesizedExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitParenthesizedExpression(ParenthesizedExpressionContext ctx) {
+    public void exitParenthesizedExpression(JavaScriptParser.ParenthesizedExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterAdditiveExpression(AdditiveExpressionContext ctx) {
+    public void enterAdditiveExpression(JavaScriptParser.AdditiveExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitAdditiveExpression(AdditiveExpressionContext ctx) {
+    public void exitAdditiveExpression(JavaScriptParser.AdditiveExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterRelationalExpression(RelationalExpressionContext ctx) {
+    public void enterRelationalExpression(JavaScriptParser.RelationalExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitRelationalExpression(RelationalExpressionContext ctx) {
+    public void exitRelationalExpression(JavaScriptParser.RelationalExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterPostIncrementExpression(PostIncrementExpressionContext ctx) {
+    public void enterPostIncrementExpression(JavaScriptParser.PostIncrementExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitPostIncrementExpression(PostIncrementExpressionContext ctx) {
+    public void exitPostIncrementExpression(JavaScriptParser.PostIncrementExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterYieldExpression(YieldExpressionContext ctx) {
+    public void enterYieldExpression(JavaScriptParser.YieldExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitYieldExpression(YieldExpressionContext ctx) {
+    public void exitYieldExpression(JavaScriptParser.YieldExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterBitNotExpression(BitNotExpressionContext ctx) {
+    public void enterBitNotExpression(JavaScriptParser.BitNotExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitBitNotExpression(BitNotExpressionContext ctx) {
+    public void exitBitNotExpression(JavaScriptParser.BitNotExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterNewExpression(NewExpressionContext ctx) {
+    public void enterNewExpression(JavaScriptParser.NewExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitNewExpression(NewExpressionContext ctx) {
+    public void exitNewExpression(JavaScriptParser.NewExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterLiteralExpression(LiteralExpressionContext ctx) {
+    public void enterLiteralExpression(JavaScriptParser.LiteralExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitLiteralExpression(LiteralExpressionContext ctx) {
+    public void exitLiteralExpression(JavaScriptParser.LiteralExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterArrayLiteralExpression(ArrayLiteralExpressionContext ctx) {
+    public void enterArrayLiteralExpression(JavaScriptParser.ArrayLiteralExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitArrayLiteralExpression(ArrayLiteralExpressionContext ctx) {
+    public void exitArrayLiteralExpression(JavaScriptParser.ArrayLiteralExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterMemberDotExpression(MemberDotExpressionContext ctx) {
+    public void enterMemberDotExpression(JavaScriptParser.MemberDotExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitMemberDotExpression(MemberDotExpressionContext ctx) {
+    public void exitMemberDotExpression(JavaScriptParser.MemberDotExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterClassExpression(ClassExpressionContext ctx) {
+    public void enterClassExpression(JavaScriptParser.ClassExpressionContext ctx) {
+        jplagParser.add(CLASS_BEGIN, ctx.getStart());
+        
+    }
+
+    @Override
+    public void exitClassExpression(JavaScriptParser.ClassExpressionContext ctx) {
+        jplagParser.add(CLASS_END, ctx.getStart());
+        
+    }
+
+    @Override
+    public void enterMemberIndexExpression(JavaScriptParser.MemberIndexExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitClassExpression(ClassExpressionContext ctx) {
+    public void exitMemberIndexExpression(JavaScriptParser.MemberIndexExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterMemberIndexExpression(MemberIndexExpressionContext ctx) {
+    public void enterIdentifierExpression(JavaScriptParser.IdentifierExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitMemberIndexExpression(MemberIndexExpressionContext ctx) {
+    public void exitIdentifierExpression(JavaScriptParser.IdentifierExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterIdentifierExpression(IdentifierExpressionContext ctx) {
+    public void enterBitAndExpression(JavaScriptParser.BitAndExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitIdentifierExpression(IdentifierExpressionContext ctx) {
+    public void exitBitAndExpression(JavaScriptParser.BitAndExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterBitAndExpression(BitAndExpressionContext ctx) {
+    public void enterBitOrExpression(JavaScriptParser.BitOrExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitBitAndExpression(BitAndExpressionContext ctx) {
+    public void exitBitOrExpression(JavaScriptParser.BitOrExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterBitOrExpression(BitOrExpressionContext ctx) {
+    public void enterAssignmentOperatorExpression(JavaScriptParser.AssignmentOperatorExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitBitOrExpression(BitOrExpressionContext ctx) {
+    public void exitAssignmentOperatorExpression(JavaScriptParser.AssignmentOperatorExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterAssignmentOperatorExpression(AssignmentOperatorExpressionContext ctx) {
+    public void enterVoidExpression(JavaScriptParser.VoidExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitAssignmentOperatorExpression(AssignmentOperatorExpressionContext ctx) {
+    public void exitVoidExpression(JavaScriptParser.VoidExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterVoidExpression(VoidExpressionContext ctx) {
+    public void enterCoalesceExpression(JavaScriptParser.CoalesceExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void exitVoidExpression(VoidExpressionContext ctx) {
+    public void exitCoalesceExpression(JavaScriptParser.CoalesceExpressionContext ctx) {
         
         
     }
 
     @Override
-    public void enterCoalesceExpression(CoalesceExpressionContext ctx) {
+    public void enterAssignable(JavaScriptParser.AssignableContext ctx) {
         
         
     }
 
     @Override
-    public void exitCoalesceExpression(CoalesceExpressionContext ctx) {
+    public void exitAssignable(JavaScriptParser.AssignableContext ctx) {
         
         
     }
 
     @Override
-    public void enterAssignable(AssignableContext ctx) {
+    public void enterObjectLiteral(JavaScriptParser.ObjectLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void exitAssignable(AssignableContext ctx) {
+    public void exitObjectLiteral(JavaScriptParser.ObjectLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void enterObjectLiteral(ObjectLiteralContext ctx) {
+    public void enterFunctionDecl(JavaScriptParser.FunctionDeclContext ctx) {
         
         
     }
 
     @Override
-    public void exitObjectLiteral(ObjectLiteralContext ctx) {
+    public void exitFunctionDecl(JavaScriptParser.FunctionDeclContext ctx) {
         
         
     }
 
     @Override
-    public void enterFunctionDecl(FunctionDeclContext ctx) {
+    public void enterAnonymousFunctionDecl(JavaScriptParser.AnonymousFunctionDeclContext ctx) {
         
         
     }
 
     @Override
-    public void exitFunctionDecl(FunctionDeclContext ctx) {
+    public void exitAnonymousFunctionDecl(JavaScriptParser.AnonymousFunctionDeclContext ctx) {
         
         
     }
 
     @Override
-    public void enterAnonymousFunctionDecl(AnonymousFunctionDeclContext ctx) {
+    public void enterArrowFunction(JavaScriptParser.ArrowFunctionContext ctx) {
         
         
     }
 
     @Override
-    public void exitAnonymousFunctionDecl(AnonymousFunctionDeclContext ctx) {
+    public void exitArrowFunction(JavaScriptParser.ArrowFunctionContext ctx) {
         
         
     }
 
     @Override
-    public void enterArrowFunction(ArrowFunctionContext ctx) {
+    public void enterArrowFunctionParameters(JavaScriptParser.ArrowFunctionParametersContext ctx) {
         
         
     }
 
     @Override
-    public void exitArrowFunction(ArrowFunctionContext ctx) {
+    public void exitArrowFunctionParameters(JavaScriptParser.ArrowFunctionParametersContext ctx) {
         
         
     }
 
     @Override
-    public void enterArrowFunctionParameters(ArrowFunctionParametersContext ctx) {
+    public void enterArrowFunctionBody(JavaScriptParser.ArrowFunctionBodyContext ctx) {
         
         
     }
 
     @Override
-    public void exitArrowFunctionParameters(ArrowFunctionParametersContext ctx) {
+    public void exitArrowFunctionBody(JavaScriptParser.ArrowFunctionBodyContext ctx) {
         
         
     }
 
     @Override
-    public void enterArrowFunctionBody(ArrowFunctionBodyContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void exitArrowFunctionBody(ArrowFunctionBodyContext ctx) {
-        
-        
-    }
-
-    @Override
-    public void enterAssignmentOperator(AssignmentOperatorContext ctx) {
+    public void enterAssignmentOperator(JavaScriptParser.AssignmentOperatorContext ctx) {
         jplagParser.add(ASSIGN, ctx.getStart());
         
     }
 
     @Override
-    public void exitAssignmentOperator(AssignmentOperatorContext ctx) {
+    public void exitAssignmentOperator(JavaScriptParser.AssignmentOperatorContext ctx) {
         
         
     }
 
     @Override
-    public void enterLiteral(LiteralContext ctx) {
+    public void enterLiteral(JavaScriptParser.LiteralContext ctx) {
         
         
     }
 
     @Override
-    public void exitLiteral(LiteralContext ctx) {
+    public void exitLiteral(JavaScriptParser.LiteralContext ctx) {
         
         
     }
 
     @Override
-    public void enterTemplateStringLiteral(TemplateStringLiteralContext ctx) {
+    public void enterTemplateStringLiteral(JavaScriptParser.TemplateStringLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void exitTemplateStringLiteral(TemplateStringLiteralContext ctx) {
+    public void exitTemplateStringLiteral(JavaScriptParser.TemplateStringLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void enterTemplateStringAtom(TemplateStringAtomContext ctx) {
+    public void enterTemplateStringAtom(JavaScriptParser.TemplateStringAtomContext ctx) {
         
         
     }
 
     @Override
-    public void exitTemplateStringAtom(TemplateStringAtomContext ctx) {
+    public void exitTemplateStringAtom(JavaScriptParser.TemplateStringAtomContext ctx) {
         
         
     }
 
     @Override
-    public void enterNumericLiteral(NumericLiteralContext ctx) {
+    public void enterNumericLiteral(JavaScriptParser.NumericLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void exitNumericLiteral(NumericLiteralContext ctx) {
+    public void exitNumericLiteral(JavaScriptParser.NumericLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void enterBigintLiteral(BigintLiteralContext ctx) {
+    public void enterBigintLiteral(JavaScriptParser.BigintLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void exitBigintLiteral(BigintLiteralContext ctx) {
+    public void exitBigintLiteral(JavaScriptParser.BigintLiteralContext ctx) {
         
         
     }
 
     @Override
-    public void enterGetter(GetterContext ctx) {
+    public void enterGetter(JavaScriptParser.GetterContext ctx) {
         
         
     }
 
     @Override
-    public void exitGetter(GetterContext ctx) {
+    public void exitGetter(JavaScriptParser.GetterContext ctx) {
         
         
     }
 
     @Override
-    public void enterSetter(SetterContext ctx) {
+    public void enterSetter(JavaScriptParser.SetterContext ctx) {
         
         
     }
 
     @Override
-    public void exitSetter(SetterContext ctx) {
+    public void exitSetter(JavaScriptParser.SetterContext ctx) {
         
         
     }
 
     @Override
-    public void enterIdentifierName(IdentifierNameContext ctx) {
+    public void enterIdentifierName(JavaScriptParser.IdentifierNameContext ctx) {
         
         
     }
 
     @Override
-    public void exitIdentifierName(IdentifierNameContext ctx) {
+    public void exitIdentifierName(JavaScriptParser.IdentifierNameContext ctx) {
         
         
     }
 
     @Override
-    public void enterIdentifier(IdentifierContext ctx) {
+    public void enterIdentifier(JavaScriptParser.IdentifierContext ctx) {
         
         
     }
 
     @Override
-    public void exitIdentifier(IdentifierContext ctx) {
+    public void exitIdentifier(JavaScriptParser.IdentifierContext ctx) {
         
         
     }
 
     @Override
-    public void enterReservedWord(ReservedWordContext ctx) {
+    public void enterReservedWord(JavaScriptParser.ReservedWordContext ctx) {
         
         
     }
 
     @Override
-    public void exitReservedWord(ReservedWordContext ctx) {
+    public void exitReservedWord(JavaScriptParser.ReservedWordContext ctx) {
         
         
     }
 
     @Override
-    public void enterKeyword(KeywordContext ctx) {
+    public void enterKeyword(JavaScriptParser.KeywordContext ctx) {
         
         
     }
 
     @Override
-    public void exitKeyword(KeywordContext ctx) {
+    public void exitKeyword(JavaScriptParser.KeywordContext ctx) {
         
         
     }
 
     @Override
-    public void enterLet_(Let_Context ctx) {
+    public void enterLet_(JavaScriptParser.Let_Context ctx) {
         
         
     }
 
     @Override
-    public void exitLet_(Let_Context ctx) {
+    public void exitLet_(JavaScriptParser.Let_Context ctx) {
         
         
     }
 
     @Override
-    public void enterEos(EosContext ctx) {
+    public void enterEos(JavaScriptParser.EosContext ctx) {
         
         
     }
 
     @Override
-    public void exitEos(EosContext ctx) {
+    public void exitEos(JavaScriptParser.EosContext ctx) {
         
         
     }
