@@ -2,6 +2,7 @@ package de.jplag.options;
 
 import static de.jplag.strategy.ComparisonMode.NORMAL;
 
+import java.io.File;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
@@ -12,8 +13,8 @@ public class JPlagOptions {
 
     public static final ComparisonMode DEFAULT_COMPARISON_MODE = NORMAL;
     public static final float DEFAULT_SIMILARITY_THRESHOLD = 0;
-    public static final int DEFAULT_STORED_MATCHES = 30;
-    
+    public static final int DEFAULT_SHOWN_COMPARISONS = 30;
+
     public static final Charset CHARSET = StandardCharsets.UTF_8;
 
     /**
@@ -37,24 +38,29 @@ public class JPlagOptions {
     private String[] fileSuffixes;
 
     /**
-     * Percentage value (must be between 0 and 100). Matches with a similarity below this threshold will be ignored. The
-     * default value of 0 allows all matches to be stored.
+     * Percentage value (must be between 0 and 100). Comparisons (of submissions pairs) with a similarity below this
+     * threshold will be ignored. The default value of 0 allows all matches to be stored. This affects which comparisons are
+     * stored and thus make it into the result object.
+     * @see JPlagOptions.similarityMetric
      */
     private float similarityThreshold = DEFAULT_SIMILARITY_THRESHOLD;
 
     /**
-     * The maximum number of matches that will be saved. This does affect the generated report as well as the internally
-     * saved comparisons. If set to -1 all matches will be saved.
+     * The maximum number of comparisons that will be shown in the generated report. If set to -1 all comparisons will be
+     * shown.
      */
-    private int maximumNumberOfMatches = DEFAULT_STORED_MATCHES;
+    private int maximumNumberOfComparisons = DEFAULT_SHOWN_COMPARISONS;
 
     /**
-     * TODO PB: Not happy with the name yet.
+     * The similarity metric determines how the minimum similarity threshold required for a comparison (of two submissions)
+     * is calculated. This affects which comparisons are stored and thus make it into the result object.
+     * @see JPlagOptions.similarityThreshold
      */
     private SimilarityMetric similarityMetric = SimilarityMetric.AVG;
 
     /**
-     * Tune the sensitivity of the comparison. A smaller <n> increases the sensitivity
+     * Tunes the comparison sensitivity by adjusting the minimum token required to be counted as matching section. A smaller
+     * <n> increases the sensitivity but might lead to more false-positves.
      */
     private Integer minimumTokenMatch;
 
@@ -172,8 +178,8 @@ public class JPlagOptions {
         return similarityThreshold;
     }
 
-    public int getMaximumNumberOfMatches() {
-        return this.maximumNumberOfMatches;
+    public int getMaximumNumberOfComparisons() {
+        return this.maximumNumberOfComparisons;
     }
 
     public SimilarityMetric getSimilarityMetric() {
@@ -213,11 +219,13 @@ public class JPlagOptions {
     }
 
     public void setBaseCodeSubmissionName(String baseCodeSubmissionName) {
-        this.baseCodeSubmissionName = baseCodeSubmissionName;
+        // Trim problematic file separators.
+        this.baseCodeSubmissionName = (baseCodeSubmissionName == null) ? null : baseCodeSubmissionName.replace(File.separator, "");
     }
 
     public void setSubdirectoryName(String subdirectoryName) {
-        this.subdirectoryName = subdirectoryName;
+        // Trim problematic file separators.
+        this.subdirectoryName = (subdirectoryName == null) ? null : subdirectoryName.replace(File.separator, "");
     }
 
     public void setLanguageOption(LanguageOption languageOption) {
@@ -240,11 +248,11 @@ public class JPlagOptions {
         }
     }
 
-    public void setMaximumNumberOfMatches(int maximumNumberOfMatches) {
-        if (maximumNumberOfMatches < -1) {
-            this.maximumNumberOfMatches = -1;
+    public void setMaximumNumberOfComparisons(int maximumNumberOfComparisons) {
+        if (maximumNumberOfComparisons < -1) {
+            this.maximumNumberOfComparisons = -1;
         } else {
-            this.maximumNumberOfMatches = maximumNumberOfMatches;
+            this.maximumNumberOfComparisons = maximumNumberOfComparisons;
         }
     }
 

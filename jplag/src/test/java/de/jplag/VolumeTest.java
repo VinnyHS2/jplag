@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import de.jplag.exceptions.ExitException;
 import de.jplag.options.JPlagOptions;
 
 /**
@@ -44,18 +45,18 @@ public class VolumeTest extends TestBase {
         }
 
         var results = runJPlag("data",
-                jPlagOptions -> jPlagOptions.setMaximumNumberOfMatches(-1));
+                jPlagOptions -> jPlagOptions.setMaximumNumberOfComparisons(-1));
 
         var csv = readCSVResults(String.format("%s/%s", this.getBasePath(), "matches_avg.csv"));
 
-        assertEquals(csv.size(), results.getAllComparisons().size());
+        assertEquals(csv.size(), results.getComparisons().size());
         System.out.println("Volume test size: " + csv.size());
 
-        results.getAllComparisons().forEach(result -> {
+        results.getComparisons().forEach(result -> {
             var key = result.getFirstSubmission().getName() + result.getSecondSubmission().getName();
 
             assertTrue(csv.containsKey(key));
-            assertEquals(csv.getOrDefault(key, -1f), result.similarity(), 0.1f);
+            assertEquals(csv.getOrDefault(key, -1f), result.similarity(), DELTA);
         });
 
     }

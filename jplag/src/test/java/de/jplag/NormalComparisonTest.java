@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.junit.Test;
 
+import de.jplag.exceptions.ExitException;
+
 public class NormalComparisonTest extends TestBase {
 
     /**
@@ -32,7 +34,7 @@ public class NormalComparisonTest extends TestBase {
         assertEquals(3, result.getNumberOfSubmissions());
         assertEquals(3, result.getComparisons().size());
 
-        result.getAllComparisons().forEach(comparison -> {
+        result.getComparisons().forEach(comparison -> {
             assertEquals(0f, comparison.similarity(), 0.1f);
         });
     }
@@ -43,23 +45,23 @@ public class NormalComparisonTest extends TestBase {
      * B is a partial copy of that code
      * C is a full copy of that code
      * D is dumb plagiarism, e.g., changed variable names, additional unneeded code, ...
-     * E is just a Hello World Java program
+     * E is just a Hello World Java errorConsumer
      */
     @Test
     public void testPartialPlagiarism() throws ExitException {
         JPlagResult result = runJPlagWithDefaultOptions("PartialPlagiarism");
 
         assertEquals(5, result.getNumberOfSubmissions());
-        assertEquals(10, result.getAllComparisons().size());
+        assertEquals(10, result.getComparisons().size());
 
         // All comparisons with E shall have no matches
-        result.getAllComparisons()
+        result.getComparisons()
                 .stream()
                 .filter(comparison ->
                         comparison.getSecondSubmission().getName().equals("E") ||
                                 comparison.getFirstSubmission().getName().equals("E"))
                 .forEach(comparison ->
-                        assertEquals(0f, comparison.similarity(), 0.1f)
+                        assertEquals(0f, comparison.similarity(), DELTA)
                 );
 
         // Hard coded assertions on selected comparisons
@@ -86,7 +88,7 @@ public class NormalComparisonTest extends TestBase {
     }
 
     private Optional<JPlagComparison> getSelectedComparison(JPlagResult result, String nameA, String nameB) {
-        return result.getAllComparisons().stream()
+        return result.getComparisons().stream()
                 .filter(comparison ->
                         comparison.getFirstSubmission().getName().equals(nameA) &&
                                 comparison.getSecondSubmission().getName().equals(nameB) ||

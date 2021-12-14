@@ -1,46 +1,31 @@
 package de.jplag;
 
-import static de.jplag.options.Verbosity.LONG;
-import static de.jplag.options.Verbosity.QUIET;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.stream.Collectors;
 
+import de.jplag.exceptions.BasecodeException;
+import de.jplag.exceptions.ExitException;
+import de.jplag.exceptions.RootDirectoryException;
+import de.jplag.exceptions.SubmissionException;
 import de.jplag.options.JPlagOptions;
 import de.jplag.options.LanguageOption;
-import de.jplag.options.Verbosity;
 import de.jplag.strategy.ComparisonStrategy;
 import de.jplag.strategy.NormalComparisonStrategy;
 import de.jplag.strategy.ParallelComparisonStrategy;
 
 /**
- * This class coordinates the whole program flow.
+ * This class coordinates the whole errorConsumer flow.
  */
-public class JPlag implements Program {
-
+public class JPlag {
     // INPUT:
-    private Submission baseCodeSubmission = null;
-    private HashSet<String> excludedFileNames = null; // Set of file names to be excluded in comparison.
     private Language language;
 
     // CORE COMPONENTS:
     private ComparisonStrategy comparisonStrategy;
-    private GreedyStringTiling gSTiling = new GreedyStringTiling(this); // Contains the comparison logic.
+    private GreedyStringTiling coreAlgorithm; // Contains the comparison logic.
     private final JPlagOptions options;
-
-    // ERROR REPORTING:
-    private String currentSubmissionName = "<Unknown submission>"; // TODO PB: This should be moved to parseSubmissions(...)
-    private int errors = 0;
-    private ArrayList<String> errorVector = new ArrayList<>(); // Vector of errors that occurred during the execution of the program.
+    private final ErrorCollector errorCollector;
 
     /**
      * Creates and initializes a JPlag instance, parameterized by a set of options.
@@ -49,6 +34,8 @@ public class JPlag implements Program {
      */
     public JPlag(JPlagOptions options) throws ExitException {
         this.options = options;
+        errorCollector = new ErrorCollector(options);
+        coreAlgorithm = new GreedyStringTiling(options);
         initializeLanguage();
         initializeComparisonStrategy();
         checkBaseCodeOption();
@@ -60,168 +47,85 @@ public class JPlag implements Program {
      * @throws ExitException if the JPlag exits preemptively.
      */
     public JPlagResult run() throws ExitException {
-        // 1. Preparation:
-        File rootDir = new File(options.getRootDirectoryName());
-        if (!rootDir.exists()) {
-            throw new ExitException("Root directory " + options.getRootDirectoryName() + " does not exist!");
-        }
-        if (!rootDir.isDirectory()) {
-            throw new ExitException(options.getRootDirectoryName() + " is not a directory!");
-        }
-        readExclusionFile(); // This file contains all files names which are excluded
+        // Parse and validate submissions.
+        SubmissionSetBuilder builder = new SubmissionSetBuilder(language, options, errorCollector);
+        SubmissionSet submissionSet = builder.buildSubmissionSet(getRootDirectory());
 
-        // 2. Parse and validate submissions:
-        ArrayList<Submission> submissions = findSubmissions(rootDir);
-        parseAllSubmissions(submissions, baseCodeSubmission);
-        submissions = filterValidSubmissions(submissions);
-        if (submissions.size() < 2) {
-            printErrors();
-            throw new ExitException("Not enough valid submissions! (found " + submissions.size() + " valid submissions)",
-                    ExitException.NOT_ENOUGH_SUBMISSIONS_ERROR);
+        if (submissionSet.hasBaseCode()) {
+            coreAlgorithm.createHashes(submissionSet.getBaseCode().getTokenList(), options.getMinimumTokenMatch(), true);
         }
 
-        // 3. Compare valid submissions:
-        errorVector = null; // errorVector is not needed anymore
-        JPlagResult result = comparisonStrategy.compareSubmissions(submissions, baseCodeSubmission);
-        printComparisonDuration(result.getDuration());
+        int submissionCount = submissionSet.numberOfSubmissions();
+        if (submissionCount < 2) {
+            throw new SubmissionException("Not enough valid submissions! (found " + submissionCount + " valid submissions)");
+        }
+
+        // Compare valid submissions.
+        JPlagResult result = comparisonStrategy.compareSubmissions(submissionSet);
+        errorCollector.print("\nTotal time for comparing submissions: " + TimeUtil.formatDuration(result.getDuration()), null);
         return result;
-    }
-
-    @Override
-    public void addError(String errorMessage) {
-        errorVector.add("[" + currentSubmissionName + "]\n" + errorMessage);
-        print(errorMessage, null);
-    }
-
-    /**
-     * @return the configured language in which the submissions are written.
-     */
-    public Language getLanguage() {
-        return language;
-    }
-
-    /**
-     * @return the program options which allow to configure JPlag.
-     */
-    protected JPlagOptions getOptions() {
-        return this.options; // TS: Should not be accessible, as options should be set before passing them to this class.
-    }
-
-    /**
-     * Checks if a file has a valid suffix for the current language.
-     * @param file is the file to check.
-     * @return true if the file suffix matches the language.
-     */
-    public boolean hasValidSuffix(File file) {
-        String[] validSuffixes = options.getFileSuffixes();
-
-        // This is the case if either the language frontends or the CLI did not set the valid suffixes array in options
-        if (validSuffixes == null || validSuffixes.length == 0) {
-            return true;
-        }
-        return Arrays.stream(validSuffixes).anyMatch(suffix -> file.getName().endsWith(suffix));
-    }
-
-    /**
-     * Checks if a file is excluded or not.
-     */
-    public boolean isFileExcluded(File file) {
-        if (excludedFileNames == null) {
-            return false;
-        }
-        return excludedFileNames.stream().anyMatch(excludedName -> file.getName().endsWith(excludedName));
-    }
-
-    @Override
-    public void print(String message, String longMessage) {
-        Verbosity verbosity = options.getVerbosity();
-        if (verbosity != QUIET) {
-            if (message != null) {
-                System.out.print(message);
-            }
-            if (longMessage != null && verbosity == LONG) {
-                System.out.print(longMessage);
-            }
-        }
     }
 
     /**
      * This method checks whether the base code directory value is valid.
      */
     private void checkBaseCodeOption() throws ExitException {
-        if (!this.options.hasBaseCode()) {
-            return;
-        }
+        getRootDirectory(); // Performs checks on the root directory.
 
-        String baseCodePath = this.options.getRootDirectoryName() + File.separator + this.options.getBaseCodeSubmissionName();
-
-        if (!(new File(this.options.getRootDirectoryName())).exists()) {
-            throw new ExitException("Root directory \"" + this.options.getRootDirectoryName() + "\" doesn't exist!", ExitException.BAD_PARAMETER);
-        }
-
-        File f = new File(baseCodePath);
-
-        if (!f.exists()) {
-            // Base code dir doesn't exist
-            throw new ExitException("Basecode directory \"" + baseCodePath + "\" doesn't exist!", ExitException.BAD_PARAMETER);
-        }
-
-        if (this.options.getSubdirectoryName() != null && this.options.getSubdirectoryName().length() != 0) {
-            f = new File(baseCodePath, this.options.getSubdirectoryName());
-
-            if (!f.exists()) {
-                throw new ExitException("Basecode directory doesn't contain" + " the subdirectory \"" + this.options.getSubdirectoryName() + "\"!",
-                        ExitException.BAD_PARAMETER);
+        if (options.hasBaseCode()) {
+            String baseCode = options.getBaseCodeSubmissionName();
+            if (baseCode.contains(".")) {
+                throw new BasecodeException("The basecode directory name \"" + baseCode + "\" cannot contain dots!");
             }
+            String baseCodePath = options.getRootDirectoryName() + File.separator + baseCode;
+            if (!new File(baseCodePath).exists()) {
+                throw new BasecodeException("Basecode directory \"" + baseCodePath + "\" doesn't exist!");
+            }
+
+            String subdirectory = options.getSubdirectoryName();
+            if (subdirectory != null && subdirectory.length() != 0) {
+                if (!new File(baseCodePath, subdirectory).exists()) {
+                    throw new BasecodeException("Basecode directory doesn't contain" + " the subdirectory \"" + subdirectory + "\"!");
+                }
+            }
+            System.out.println("Basecode directory \"" + baseCodePath + "\" will be used");
         }
-
-        System.out.println("Basecode directory \"" + baseCodePath + "\" will be used");
-    }
-
-    private ArrayList<Submission> filterValidSubmissions(ArrayList<Submission> submissions) {
-        return submissions.stream().filter(submission -> !submission.hasErrors()).collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
-     * Find all submissions in the given root directory.
+     * Check sanity of the root directory name in the options, and construct file system access to it.
      */
-    private ArrayList<Submission> findSubmissions(File rootDir) throws ExitException {
-        String[] fileNamesInRootDir;
-
-        try {
-            fileNamesInRootDir = rootDir.list();
-        } catch (SecurityException e) {
-            throw new ExitException("Cannot list files of the root directory! " + e.getMessage());
+    private File getRootDirectory() throws ExitException {
+        String rootDirectoryName = options.getRootDirectoryName();
+        File rootDir = new File(rootDirectoryName);
+        if (!rootDir.exists()) {
+            throw new RootDirectoryException(String.format("Root directory \"%s\" does not exist!", rootDirectoryName));
         }
-
-        if (fileNamesInRootDir == null) {
-            throw new ExitException("Cannot list files of the root directory! " + "Make sure the specified root directory is in fact a directory.");
+        if (!rootDir.isDirectory()) {
+            throw new RootDirectoryException(String.format("Root directory \"%s\" is not a directory!", rootDirectoryName));
         }
-
-        Arrays.sort(fileNamesInRootDir);
-
-        return mapFileNamesInRootDirToSubmissions(fileNamesInRootDir, rootDir);
+        return rootDir;
     }
 
-    private void initializeComparisonStrategy() throws ExitException {
+    private void initializeComparisonStrategy() {
         switch (options.getComparisonMode()) {
         case NORMAL:
-            comparisonStrategy = new NormalComparisonStrategy(options, gSTiling);
+            comparisonStrategy = new NormalComparisonStrategy(options, coreAlgorithm);
             break;
         case PARALLEL:
-            comparisonStrategy = new ParallelComparisonStrategy(options, gSTiling);
+            comparisonStrategy = new ParallelComparisonStrategy(options, coreAlgorithm);
             break;
         default:
-            throw new ExitException("Illegal comparison mode: " + options.getComparisonMode());
+            throw new UnsupportedOperationException("Comparison mode not properly supported: " + options.getComparisonMode());
         }
     }
 
-    private void initializeLanguage() throws ExitException {
+    private void initializeLanguage() {
         LanguageOption languageOption = this.options.getLanguageOption();
 
         try {
-            Constructor<?> constructor = Class.forName(languageOption.getClassPath()).getConstructor(Program.class);
-            Object[] constructorParams = {this};
+            Constructor<?> constructor = Class.forName(languageOption.getClassPath()).getConstructor(ErrorConsumer.class);
+            Object[] constructorParams = {errorCollector};
 
             Language language = (Language) constructor.newInstance(constructorParams);
 
@@ -230,219 +134,11 @@ public class JPlag implements Program {
         } catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException | IllegalAccessException
                 | IllegalArgumentException | InvocationTargetException e) {
             e.printStackTrace();
-
-            throw new ExitException("Language instantiation failed", ExitException.BAD_LANGUAGE_ERROR);
+            throw new IllegalStateException("Language instantiation failed:" + e.getMessage());
         }
 
-        this.options.setLanguageDefaults(this.getLanguage());
+        this.options.setLanguageDefaults(this.language);
 
-        System.out.println("Initialized language " + this.getLanguage().getName());
-    }
-
-    private ArrayList<Submission> mapFileNamesInRootDirToSubmissions(String[] fileNames, File rootDir) throws ExitException {
-        ArrayList<Submission> submissions = new ArrayList<>();
-
-        for (String fileName : fileNames) {
-            File submissionFile = new File(rootDir, fileName);
-
-            if (isFileExcluded(submissionFile)) {
-                System.out.println("Exclude submission: " + submissionFile.getName());
-                continue;
-            }
-
-            if (submissionFile.isFile() && !hasValidSuffix(submissionFile)) {
-                System.out.println("Ignore submission with invalid suffix: " + submissionFile.getName());
-                continue;
-            }
-
-            if (submissionFile.isDirectory() && options.getSubdirectoryName() != null) {
-                // Use subdirectory instead
-                submissionFile = new File(submissionFile, options.getSubdirectoryName());
-
-                if (!submissionFile.exists()) {
-                    throw new ExitException(
-                            String.format("Submission %s does not contain the given subdirectory '%s'", fileName, options.getSubdirectoryName()));
-                }
-
-                if (!submissionFile.isDirectory()) {
-                    throw new ExitException(String.format("The given subdirectory '%s' is not a directory!", options.getSubdirectoryName()));
-                }
-            }
-
-            Submission submission = new Submission(fileName, submissionFile, this);
-
-            if (options.hasBaseCode() && options.getBaseCodeSubmissionName().equals(fileName)) {
-                baseCodeSubmission = submission;
-            } else {
-                submissions.add(submission);
-            }
-        }
-
-        return submissions;
-    }
-
-    /**
-     * TODO PB: Find a better way to separate parseSubmissions(...) and parseBaseCodeSubmission(...)
-     */
-    private void parseAllSubmissions(ArrayList<Submission> submissions, Submission baseCodeSubmission) throws ExitException {
-        try {
-            parseSubmissions(submissions);
-            parseBaseCodeSubmission(baseCodeSubmission);
-        } catch (OutOfMemoryError e) {
-            throw new ExitException("Out of memory during parsing of submission \"" + currentSubmissionName + "\"");
-        } catch (Throwable e) {
-            e.printStackTrace();
-            throw new ExitException("Unknown exception during parsing of " + "submission \"" + currentSubmissionName + "\"");
-        }
-    }
-
-    /**
-     * Parse the given base code submission.
-     */
-    private void parseBaseCodeSubmission(Submission subm) throws ExitException {
-        if (subm == null) {
-            // TODO:
-            // options.useBasecode = false;
-            return;
-        }
-
-        long msec = System.currentTimeMillis();
-        print("----- Parsing basecode submission: " + subm.getName() + "\n", null);
-
-        // lets go:
-
-        if (!subm.parse()) {
-            printErrors();
-            throw new ExitException("Bad basecode submission");
-        }
-
-        if (subm.getTokenList() != null && subm.getNumberOfTokens() < options.getMinimumTokenMatch()) {
-            throw new ExitException("Basecode submission contains fewer tokens " + "than minimum match length allows!\n");
-        }
-
-        if (options.hasBaseCode()) {
-            gSTiling.createHashes(subm.getTokenList(), options.getMinimumTokenMatch(), true);
-        }
-
-        print("\nBasecode submission parsed!\n", null);
-
-        long time = System.currentTimeMillis() - msec;
-
-        print("\n", "\nTime for parsing Basecode: " + ((time / 3600000 > 0) ? (time / 3600000) + " h " : "")
-                + ((time / 60000 > 0) ? ((time / 60000) % 60000) + " min " : "") + (time / 1000 % 60) + " sec\n");
-    }
-
-    /**
-     * Parse all given submissions.
-     */
-    private void parseSubmissions(ArrayList<Submission> submissions) {
-        if (submissions == null) {
-            System.out.println("Nothing to parse!");
-            return;
-        }
-
-        int count = 0;
-
-        long msec = System.currentTimeMillis();
-        Iterator<Submission> iter = submissions.iterator();
-
-        int invalid = 0;
-        while (iter.hasNext()) {
-            boolean ok;
-            boolean removed = false;
-            Submission subm = iter.next();
-
-            print(null, "------ Parsing submission: " + subm.getName() + "\n");
-            currentSubmissionName = subm.getName();
-
-            if (!(ok = subm.parse())) {
-                errors++;
-            }
-
-            count++;
-
-            if (subm.getTokenList() != null && subm.getNumberOfTokens() < options.getMinimumTokenMatch()) {
-                print(null, "Submission contains fewer tokens than minimum match " + "length allows!\n");
-                subm.setTokenList(null);
-                invalid++;
-                removed = true;
-            }
-
-            if (ok && !removed) {
-                print(null, "OK\n");
-            } else {
-                print(null, "ERROR -> Submission removed\n");
-            }
-        }
-
-        print("\n" + (count - errors - invalid) + " submissions parsed successfully!\n" + errors + " parser error" + (errors != 1 ? "s!\n" : "!\n"),
-                null);
-
-        if (invalid != 0) {
-            print(null,
-                    invalid + ((invalid == 1) ? " submission is not valid because it contains" : " submissions are not valid because they contain")
-                            + " fewer tokens\nthan minimum match length allows.\n");
-        }
-
-        long time = System.currentTimeMillis() - msec;
-
-        print("\n\n",
-                "\nTotal time for parsing: " + ((time / 3600000 > 0) ? (time / 3600000) + " h " : "")
-                        + ((time / 60000 > 0) ? ((time / 60000) % 60000) + " min " : "") + (time / 1000 % 60) + " sec\n"
-                        + "Time per parsed submission: " + (count > 0 ? (time / count) : "n/a") + " msec\n\n");
-    }
-
-    private void printComparisonDuration(long durationInMiliseconds) {
-        int timeInSeconds = (int) (durationInMiliseconds / 1000);
-        String hours = (timeInSeconds / 3600 > 0) ? (timeInSeconds / 3600) + " h " : "";
-        String minutes = (timeInSeconds / 60 > 0) ? ((timeInSeconds / 60) % 60) + " min " : "";
-        String seconds = (timeInSeconds % 60) + " sec";
-        System.out.println("Total time for comparing submissions: " + hours + minutes + seconds);
-    }
-
-    /**
-     * Print all errors from the errorVector.
-     */
-    private void printErrors() {
-        StringBuilder errorStr = new StringBuilder();
-
-        for (String str : errorVector) {
-            errorStr.append(str);
-            errorStr.append('\n');
-        }
-
-        System.out.println(errorStr.toString());
-    }
-
-    /*
-     * If an exclusion file is given, it is read in and all stings are saved in the set "excluded".
-     */
-    private void readExclusionFile() {
-        if (options.getExclusionFileName() == null) {
-            return;
-        }
-
-        excludedFileNames = new HashSet<>();
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(options.getExclusionFileName(), JPlagOptions.CHARSET));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                excludedFileNames.add(line.trim());
-            }
-
-            reader.close();
-        } catch (IOException exception) {
-            System.out.println("Could not read exclusion file: " + exception.getMessage());
-        }
-
-        if (options.getVerbosity() == LONG) {
-            print(null, "Excluded files:\n");
-
-            for (String excludedFileName : excludedFileNames) {
-                print(null, "  " + excludedFileName + "\n");
-            }
-        }
+        System.out.println("Initialized language " + this.language.getName());
     }
 }
